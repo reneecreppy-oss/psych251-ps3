@@ -1,0 +1,130 @@
+---
+title: "Reproducibility check: Joel, Teper, & MacDonald (2014)"
+author: "Renée Creppy"
+date: today
+format:
+  html:
+    toc: true
+    embed-resources: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Article
+
+- Citation and DOI: Joel, S., Teper, R., & MacDonald, G. (2014). People overestimate their willingness to reject potential romantic partners by overlooking their concern for other people. *Psychological Science, 25*(12), 2233–2240. <https://doi.org/10.1177/0956797614552828>
+- Data/materials repository URL: provided by the course, `psych251/problem_sets/ps3/Group A/Choice 1` (<https://github.com/psych251/problem_sets/tree/master/ps3>)
+- Part A (known case) or Part B (a classmate's project paper): **Part A** (Group A, Choice 1)
+- Part B only: the classmate's project repo, and which target outcome is its key effect: N/A
+
+## Target outcomes
+
+Taken from the course's `reproducibilityReport.Rmd`, which quotes the Study 1 results section:
+
+> Only 10 of the 61 participants in the hypothetical condition chose to exchange contact information with the unattractive potential date (16%). In contrast, 26 of the 71 participants in the real condition chose to exchange contact information (37%). A chi-square test of independence indicated that participants were significantly less likely to reject the unattractive potential date in the real condition compared with the hypothetical condition, X\^2(1, N = 132) = 6.77, p = .009.
+
+| \# | Target outcome (quoted) | Paper value(s) |
+|------------------------|------------------------|------------------------|
+| 1 | "Only 10 of the 61 participants in the hypothetical condition chose to exchange contact information ... (16%)" | 10 / 61, 16% |
+| 2 | "26 of the 71 participants in the real condition chose to exchange contact information (37%)" | 26 / 71, 37% |
+| 3 | "X\^2(1, N = 132) = 6.77" | χ² = 6.77, df = 1, N = 132 |
+| 4 | "p = .009" | p = .009 |
+
+## Materials inventory
+
+| Item | Available? | Notes |
+|------------------------|------------------------|------------------------|
+| Raw data | No | Only the analysis file was provided. The paper says 150 participants took part, but the file has 132, so the pre-exclusion data are not included. |
+| Processed data | Yes | `Empathy Gap Study 1 data.sav` (SPSS), 132 participants, with a section of variables marked as required for the paper's analyses. |
+| Codebook / variable descriptions | Partial | No separate codebook, but the SPSS file has value labels (`condition`: 0 = hypothetical, 1 = real; `exchangeinfo`: 1 = yes, 2 = no). |
+| Analysis code | No |  |
+| Preregistration | No | None mentioned. |
+
+## Reproduction
+
+The agent's code (Claude Code), copied from its completed `reproducibilityReport.Rmd`. The only change is the data path.
+
+```{r}
+#| label: setup
+library(tidyverse)
+library(knitr)
+library(haven)
+```
+
+```{r}
+#| label: load
+d <- read_sav("partA_data/Empathy Gap Study 1 data.sav")
+```
+
+```{r}
+#| label: preprocess
+# condition: 0 = hypothetical, 1 = real; exchangeinfo: 1 = yes, 2 = no (SPSS value labels)
+d_tidy <- d %>%
+  mutate(condition = as_factor(condition),
+         exchangeinfo = as_factor(exchangeinfo)) %>%
+  select(ID, condition, exchangeinfo)
+
+nrow(d_tidy)
+sum(is.na(d_tidy$condition))
+sum(is.na(d_tidy$exchangeinfo))
+```
+
+```{r}
+#| label: analysis
+desc <- d_tidy %>%
+  group_by(condition) %>%
+  summarise(n_total = n(),
+            n_exchange = sum(exchangeinfo == "yes"),
+            pct_exchange = round(100 * n_exchange / n_total, 1))
+
+kable(desc, col.names = c("Condition", "N", "N exchanged contact info", "% exchanged"))
+
+contingency <- table(d_tidy$condition, d_tidy$exchangeinfo)
+contingency
+
+chi <- chisq.test(contingency, correct = FALSE)
+chi
+```
+
+Reported in APA style: χ²(`r chi$parameter`, N = `r sum(contingency)`) = `r sprintf("%.2f", chi$statistic)`, p = `r sub("^0", "", sprintf("%.3f", chi$p.value))`.
+
+## Checker's verdict
+
+Filled in by you, not the agent.
+
+| \# | Paper value | Reproduced value | Verdict (exact / minor / major / not reproducible) | Reason for discrepancy |
+|---------------|---------------|---------------|---------------|---------------|
+| 1 | 10 / 61 (16%) | 10/61 (16%) | exact | N/A |
+| 2 | 26 / 71 (37%) | 26/71 (37%) | exact | N/A |
+| 3 | χ²(1, N = 132) = 6.77 | χ²(1, N = 132) = 6.77 | exact | N/A |
+| 4 | p = .009 | p = .009 | exact | N/A |
+
+Agent's own claim about success, and whether it was right:
+
+The agent reported that it was able to reproduce all of the results above, and the counts match exactly. The original authors shared a clean data file with clear instructions for analysis, so the agent shared the code was straightforward to write.
+
+The agent was correct about successfully reproducing the results from the paper.
+
+## Time
+
+- Your time (hours): 1
+- Agent wall-clock time (hours): about .016 hrs
+- Stopped at the 4-hour cap? What remained: No; nothing remained.
+
+## Assessment
+
+Is the primary result analytically reproducible? What would have made this take 30 minutes?
+
+Yes, the primary result was analytically reproducible - it took no guesswork, help from the authors, and no extra steps beyond the template's hint to turn off the continuity correction.
+
+Caveat: The paper reported 150 participants, but the data file shared had only 132 analyzed participants. The results are reproducible from the data as shared, however, it was not possible to check the exclusions that took the sample from 150 to 132.
+
+## AI documentation
+
+- Agent and interface: Claude Code, VS Code extension
+- Model and version: `claude-opus-5-5` (Claude Opus 5.5), as reported in the transcript
+- Context given: a single prompt naming the article folder (article PDF, data, `reproducibilityReport.Rmd`) and asking it to fill in and render the report. A fresh session, no other files or instructions.
+- Number of interventions: 0 (one prompt only)
+- Transcript: [transcripts/partA_transcript.md](https://github.com/reneecreppy-oss/psych251-ps3/blob/main/transcripts/partA_transcript.md) (committed to this repo under `transcripts/`). The raw transcript was converted to Markdown, with my email, username, and home path removed and system messages omitted.
