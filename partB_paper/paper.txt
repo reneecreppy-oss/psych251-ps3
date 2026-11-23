@@ -1,0 +1,763 @@
+SCIENCE ADVANCES | RESEARCH ARTICLE
+
+PSYCHOLOGICAL SCIENCE                                                                                                                         Copyright © 2021
+                                                                                                                                              The Authors, some
+Quantitative mental state attributions in                                                                                                     rights reserved;
+                                                                                                                                              exclusive licensee
+language understanding                                                                                                                        American Association
+                                                                                                                                              for the Advancement
+                                                                                                                                              of Science. No claim to
+Julian Jara-Ettinger1,2* and Paula Rubio-Fernandez3,4                                                                                         original U.S. Government
+                                                                                                                                              Works. Distributed
+Human social intelligence relies on our ability to infer other people’s mental states such as their beliefs, desires,                         under a Creative
+and intentions. While people are proficient at mental state inference from physical action, it is unknown whether                             Commons Attribution
+people can make inferences of comparable granularity from simple linguistic events. Here, we show that people                                 NonCommercial
+can make quantitative mental state attributions from simple referential expressions, replicating the fine-grained                             License 4.0 (CC BY-NC).
+inferential structure characteristic of nonlinguistic theory of mind. Moreover, people quantitatively adjust these
+inferences after brief exposures to speaker-specific speech patterns. These judgments matched the predictions
+made by our computational model of theory of mind in language, but could not be explained by a simpler quali-
+tative model that attributes mental states deductively. Our findings show how the connection between language
+and theory of mind runs deep, with their interaction showing in one of the most fundamental forms of human
+
+
+
+
+                                                                                                                                                                         Downloaded from https://www.science.org at Stanford University on November 22, 2026
+communication: reference.
+
+
+
+INTRODUCTION                                                                          Instead, people often first look at—and sometimes even reach for—
+People’s behavior is rich with information about their mental life. A                 the ball that the speaker is unaware of.
+subtle yawn can betray that your friend is bored or tired; a glance at                    Critically, these mental state reasoning failures emerge when lis-
+their wristwatch might suggest that they are eager to leave; or a                     teners are explicitly told about the speaker’s perspective and must
+pause before answering a sensitive question can reveal that they are                  interpret what the speaker says accordingly. In more realistic inter-
+considering how to reply. Inferences like these are fundamental to                    actions, however, we are rarely told how our interlocutor’s perspec-
+our everyday lives, allowing us to understand other people’s behav-                   tive differs from our own so that we can interpret their words
+ior, determine what to expect, and decide how to react. To what                       accordingly. Instead, we often do the reverse: We infer what our
+extent can we make these inferences in a precise and fine-grained                     interlocutor knows (or does not know) during the course of our
+manner based on how people speak?                                                     conversations, based on what they say and how they say it.
+    People’s ability to infer each other’s mental states—known as                         Here, we sought to test people’s ability to extract speakers’
+a theory of mind—has been historically studied in the context of                      knowledge from their choice of words (rather than using speakers’
+physical action. By attending to how agents move and behave, peo-                     knowledge to interpret their words). When attributing mental states
+ple can infer a range of mental states including goals, preferences,                  from observable action, people’s inferences are nuanced and quan-
+and knowledge (1–9). However, much of real-world social behavior                      titative (1, 3, 4, 6), similar to those characteristic of low-level processes
+happens in the context of linguistic interactions, where people’s words               such as perception and motor control [e.g., consider the precision
+can reveal the contents of their minds, even in the absence of phys-                  needed to move one’s arm and swiftly pick up a hat (19–21)]. How-
+ical cues (e.g., when speaking on the phone).                                         ever, it is unknown whether this level of granularity might extend
+    In these conversational contexts, speakers often willingly dis-                   to mental state inferences based on simple word choices. While past
+close their mental states by using mentalistic words (10), such as when               work has found that people can attend to mental state information
+we confirm that we understand something or confess that we are                        in communicative interactions (16–18), these results do not reveal
+confused and feel embarrassed. However, even the most basic non-                      whether these inferences are coarse and qualitative, or nuanced and
+mentalistic words, such as articles and adjectives, can reveal aspects                fine-grained. Our goal was therefore to test whether listeners can
+of what a speaker wants or knows. For instance, if a friend asked you                 derive sophisticated mental state inferences from speakers’ minimal
+to bring “the blue cup” from the kitchen, their words might sug-                      linguistic choices, which they can then deploy as needed (such as
+gest that they expect you to find only one such cup among several                     to understand the speaker’s message or determine whether they are
+others or that you know which cup they are talking about.                             aware of a particular piece of information; see discussion).
+    Despite the mental state information available in speakers’ non-                      To test this, we used a more complex, yet perhaps more natural
+mentalistic words, listener mental state reasoning in simple com-                     task than those typically used to probe mental state reasoning in
+municative tasks appears to be unexpectedly limited (11–15) [cf. (16–18)].            language comprehension: Participants had to infer both the speaker’s
+For instance, when a speaker who cannot see the smallest of three                     referential intent and their knowledge from their choice of words.
+balls requests “the small ball,” listeners do not immediately take the                This paradigm better reflects the structure of normal communica-
+middle-sized ball (the smallest one from the speaker’s perspective).                  tive interactions, where speakers’ knowledge and referential intent
+                                                                                      are both unobservable and must be inferred in tandem.
+                                                                                          We focused our study on one of the simplest and most central
+1
+ Department of Psychology, Yale University, New Haven, CT, USA. 2Department of        linguistic events where language and mental state reasoning inter-
+Computer Science, Yale University, New Haven, CT, USA. 3Department of Philoso-        face: reference production and resolution. In deciding what to call
+phy, Classics, History of Art and Ideas, University of Oslo, Oslo, Norway. 4Depart-
+ment of Brain and Cognitive Sciences, MIT, Cambridge, MA, USA.                        an object, speakers must be aware of what listeners will treat as a
+*Corresponding author. Email: julian.jara-ettinger@yale.edu                           potential referent. For instance, if there was a single cup in the
+
+Jara-Ettinger and Rubio-Fernandez, Sci. Adv. 7, eabj0970 (2021)   17 November 2021                                                                           1 of 10
+
+SCIENCE ADVANCES | RESEARCH ARTICLE
+
+kitchen, your friend may ask you to bring them “the cup.” However,                   (1, 4, 6). Under these frameworks, observers infer an actor’s mental
+if multiple cups are in view, they should recognize that the bare                    states by considering what types of beliefs and desires would lead a
+description is ambiguous and add additional information such as                      rational agent to act, speak, or communicate in the observed man-
+the cup’s color or size. Conversely, listeners can infer what speakers               ner. Our model falls within this framework: Given an utterance, we
+may or may not know based on their choice of words. If, for in-                      perform a joint inference over the mental states and referential in-
+stance, your friend asked you for “the cup” when two cups are in                     tent that combined explain speakers’ choice of words.
+view, you could infer that they have one of the cups in mind but                         To illustrate the logic of our model, consider a situation like the
+did not realize there was a second one (otherwise they would                         one in Fig. 1A. Here, a speaker describes one of the four shapes
+have asked you for “a cup”). Likewise, if your friend produced a                     in each of the two displays (“the square” in the left-side display and
+modified description, such as “the big cup,” you could infer that                    “the green triangle” in the right-side display). However, the speaker
+they are aware that there is more than one cup in view and that not                  has a blind spot and cannot see one of the four cells, incorrectly
+all cups are the same size. Given these potential inferences, we used                believing that each display only has three shapes to choose from.
+referential communication to investigate whether listeners can                       Given the referential expressions in Fig. 1A, we can infer that the
+derive fine-grained mental state inferences from speakers’ use of                    speaker’s blind spot must be one of the top cells. Listeners, however,
+nonmentalistic words.                                                                can often go even further than this logical deduction. In Fig. 1B, for
+    To evaluate listeners’ capacity to derive theory of mind infer-                  instance, the speaker used color adjectives in both displays, helping
+ences from speakers’ choice of words, we developed a computational                   the listener identify the intended shape and discard the alternative
+
+
+
+
+                                                                                                                                                                   Downloaded from https://www.science.org at Stanford University on November 22, 2026
+model that derives precise and nuanced mental state inferences in a                  shape in the top-left cell. This suggests that the speaker could see that
+quantitative manner. These inferences in our model not only identify                 cell (despite never directly referring to it) and that their blind spot
+what an agent may or may not know but also provide fine-grained                      must therefore be the top-right cell. In other cases, however, such as
+levels of confidence over these inferences. Our computational model                  in Fig. 1F, the speaker may be using color words redundantly, and
+therefore allows us not only to test whether people can infer mental                 our model also aims to capture how listeners must adjust their in-
+states from speakers’ choice of words but to also see whether these                  ferences accordingly.
+inferences are quantitative. Alternatively, mental state inferences                      We formalize the logic of this inference by building on past work
+from speakers’ word choices might be coarse and qualitative, similar                 showing that both reference resolution and mental state inferences
+to those arising from heuristics and biases that are broadly correct                 are instantiated as Bayesian inference over models of a rational speak-
+but lack nuance [e.g., when complex decisions are influenced by the                  er (27, 28) or a rational actor (1, 4, 6), respectively. Within a proba-
+problem’s framing or by anchoring effects (22, 23)]. To explore this                 bilistic framework, we can express the problem of jointly inferring
+latter possibility, we contrasted our model with a simpler deductive                 speakers’ beliefs and intended referent as computing the posterior
+model that determines reference and knowledge deductively based                      distribution (see the Supplementary Materials for a detailed deriva-
+on speakers’ literal descriptions, without reasoning about their                     tion of Eq. 1)
+choice of words.
+    In experiment 1, we first tested people’s ability to infer speakers’              p(t, b∣u ) ∝ ​ ∑ ​​p(u∣t, b, r ) p(r ) p(t∣b ) p(b)​	
+                                                                                     	​                                                                     (1)
+                                                                                                               r∈[0,1]
+mental states based on how they use color adjectives and whether
+these inferences are best explained by our quantitative theory of mind                   Here, t is the speaker’s intended referent (or target), formalized
+model or by our alternative deductive model. In linguistic events,                   as one of the objects in the visual scene; b is the speaker’s belief and
+however, mental state inferences must be adjusted to speakers’ indi-                 represents the objects that the speaker is aware of, formalized as any
+vidual communicative patterns (24–26). In experiment 2, we thus                      subset (including the full set) or objects in the scene; r is the speaker’s
+tested if, like our model, people adjust their inferences based on                   unknown propensity to speak redundantly; and u is the speaker’s
+evidence of speakers’ propensity to use adjectives redundantly                       utterance. In our tasks, we used a uniform distribution over beliefs
+(i.e., when they are not necessary to preempt an ambiguity). Last,                   where one of the objects is hidden from the speaker [i.e., p(b) = 1/4
+in experiment 3, we tested more complex visual displays (using                       for each belief where three objects are known] and a uniform distri-
+pictures of real-world objects) where speakers dynamically use dif-                  bution over p(t∣b) [i.e., p(t∣b) = 1/3 for each observable object].
+ferent adjective types and more or less specific words (manipulating                     In line with models of mental state attribution and reference res-
+color modification, size modification, and noun choice within                        olution (3, 6, 27, 36), the probability that the speaker produces
+participants).                                                                       utterance u [p(u∣t, b, r)] is obtained by assuming that the speaker
+                                                                                     is motivated to be as informative as possible (37) adjusted with the
+Computational framework                                                              empirical finding that speakers often overspecify (38–41).
+While substantial computational work has looked at how people                            To calculate this likelihood term, we first assume that the speaker
+identify speakers’ referential intent (27–30), including cases where                 has a fixed and known probability of accidentally producing an un-
+speakers’ knowledge affects how they speak (31, 32), this work has                   derinformative expression (e.g., “the triangle” when two triangles
+primarily focused on situations where the ultimate goal is to resolve                are in view), estimated in a separate task (P = 0.055 and 0.056 for
+reference. Here, rather than focusing on how knowledge of mental                     experiments 1 and 2, respectively, and P = 0.047, 0.163, and 0.217
+states affects language understanding, we focus on how language                      for color, size, and category in experiment 3; see the Supplementary
+understanding supports inferences about mental states.                               Materials for experiment details). In the remaining cases, the speaker
+   We take as a starting point advances in computational cognitive                   selects the shortest sufficiently informative utterance with probability
+science showing how human social reasoning can be understood as                      1 – r and introduces a redundant adjective with probability r. Criti-
+Bayesian inference over a mental model of a rational agent in lin-                   cally, however, we treat this probability as variable across speakers.
+guistic (27, 28), pedagogical (33–35), and nonlinguistic interactions                Thus, rather than using a single parameter, we represented the
+
+Jara-Ettinger and Rubio-Fernandez, Sci. Adv. 7, eabj0970 (2021)   17 November 2021                                                                       2 of 10
+
+SCIENCE ADVANCES | RESEARCH ARTICLE
+
+               Theory of mind model
+              A       The square         The green triangle                                  B    The red square      The blue circle
+                                                                           B                                                                                 B
+
+                                                                            B                                                                                    B
+
+
+
+
+                                                                                                                                              L                          RR
+                                                              LL                        RR                                                L
+
+
+              C The yellow triangle      The blue triangle                                   D       The circle       The blue circle
+
+
+                                                                                B                                                                          B B
+                                                                                B
+
+
+
+                                                                                                                                                      LL
+
+
+                                                              R
+                                                              L                                                                                                          RR
+
+
+              E       The triangle          The triangle                                     F        The star      The yellow triangle
+
+
+
+
+                                                                                                                                                                                        Downloaded from https://www.science.org at Stanford University on November 22, 2026
+                                                                                                                                          R       L
+                                                                                    B                                                      R
+                                                                                    B                                                                 L
+
+                                                                                                                                                                 B
+                                                                                                                                                                     B
+
+
+
+                                                                       R
+                                                                   R
+                                                              L
+
+                      Participant judgments        Theory of mind model
+
+Fig. 1. Example trials from experiment 1 along with participant judgments and our theory of mind model’s predictions. (A to F) Experiment trials, consisting of
+two visual scenes, each with a speaker utterance (presented on top). For each panel, trackpads to the right of each panel show average participant judgments and mod-
+el predictions. L marks the inferred referent on the left-side display, R the inferred referent on the right-side display, and B the inferred blind spot.
+
+
+probability of overspecification as a Beta distribution with parame-                             This deductive model makes identical predictions to our theory
+ters estimated in a separate task [using B(0.39,0.32) and B(0.32,1.12)                       of mind model in some situations, but diverges in critical ways in
+for experiments 1 and 2, respectively, and B(0.43,0.82), B(0.28,1.18),                       others. In Fig. 2 (A and D), for instance, the deductive model can
+and B(0.29,0.22) for color, size, and category in experiment 3; see                          also identify the two referents correctly, but only in Fig. 2A does the
+the Supplementary Materials for experiment details]. Thus, the                               deductive process reveal the probable location of the blind spots. In
+likelihood function captures the idea that speakers tend to produce                          Fig. 2 (B and C), however, the deductive model is unable to infer
+the shortest possible expression, with a small fixed probability of                          the referents or the speaker’s blind spot, as a full joint inference
+underspecifying and an unknown speaker-variable probability of                               is required to understand what the speaker intends to say and what
+overspecifying.                                                                              they know.
+    Our theory of mind model generates quantitative predictions
+that reflect listener beliefs about the speaker’s intended referent and
+knowledge, assigning probabilities to each potential referent and to                         RESULTS
+each potential belief. To contrast these predictions with a more                             In experiment 1, we first tested people’s ability to perform joint
+qualitative account—i.e., an account where listeners infer agents’                           inferences about speakers’ intended referents and knowledge, and
+knowledge, but lack quantitative estimates of their certainty—we                             whether these judgments matched the quantitative resolution cap-
+also considered a simpler model that infers intended referents and                           tured in our theory of mind model. In experiment 2, we further tested
+knowledge without considering speakers’ choice of words. Because,                            whether participant inferences were sensitive to speaker-specific
+in contexts where belief inference is not at stake, reference resolution                     communicative styles, providing evidence that people adjust their
+is well captured as probabilistic inference over speaker intentions                          mental state inferences not only to the content of the utterance but
+(27, 28), our alternative model preserved our main model’s proba-                            also to the speaker’s propensity to use descriptive language. Last, in
+bilistic framework, with the difference that it ceased to consider how                       experiment 3, we extended our findings to test whether these
+knowledge influences a speakers’ choice to include or omit adjectives.                       mental state inferences remain when using complex real-world
+Formally, we achieved this by simply placing a uniform distribution                          objects and speakers use more variable descriptions, including dif-
+over utterances that describe the target in p(u∣t, b, r). Thus, this                         ferent nouns.
+model captures a form of qualitative theory of mind: It under-
+stands that speakers will only describe objects that they know about                         Experiment 1: Joint referent and belief inferences
+[encoded in p(t∣b); Eq. 1] and uses this knowledge to deductively                            In experiment 1, we used a language comprehension task based on
+identify the speaker’s blind spot, but it does not treat the use or                          a standard paradigm (11, 16, 18, 42, 43), extended to include multi-
+omission of adjectives as carrying information about the speaker’s                           ple events where speakers’ utterances revealed partial information
+mental states.                                                                               about their mental states. For this first test, we used color modification
+
+Jara-Ettinger and Rubio-Fernandez, Sci. Adv. 7, eabj0970 (2021)        17 November 2021                                                                                       3 of 10
+
+SCIENCE ADVANCES | RESEARCH ARTICLE
+
+               Deductive model
+               A The yellow triangle     The blue triangle                           B        The circle         The blue circle
+
+
+                                                                                                                                         B               B
+                                                                          BB
+
+                                                                                                                                                     L
+
+                                                                                                                                             L
+
+
+                                                              R                                                                                                  RR
+
+
+               C      The triangle          The triangle                             D        The star        The yellow triangle
+                                                                                                                                                 L
+                                                                                                                                     R
+                                                                               B                                                             L
+
+                                                                                                                                                             B
+                                                                          B
+
+                                                                      R
+
+                                                                  R                                                                                      B
+
+                                                              L
+
+                      Participant judgments        Deductive model
+
+
+
+
+                                                                                                                                                                                Downloaded from https://www.science.org at Stanford University on November 22, 2026
+Fig. 2. Example trials from experiment 1 along with participant judgments and the deductive model’s predictions. (A) to (D) show the same trials from Fig. 1 (C to F).
+
+
+
+
+as a cue to speaker beliefs because color is often overspecified                     Fig. 2D, for instance, the deductive model performs similar to par-
+(39, 44). Therefore, speakers’ inclusion or omission of color adjec-                 ticipants when identifying the referents. When inferring beliefs,
+tives cannot be treated as simple cues to knowledge, and listeners                   however, participants infer that the speaker most likely cannot see
+must consider the pattern of usage in the visual context to infer the                the top-right cell based on their choice of words (in particular,
+speaker’s knowledge. Participants were simultaneously presented                      the failure to use a disambiguating color word in the first event). By
+with pairs of linguistic events like those in Fig. 1 (28 pairs of displays           contrast, the deductive model infers that the blind spot is probably
+total; see the Supplementary Materials) and had to infer speakers’                   on the bottom cells because the speaker’s referents always appear to
+intended referent in each event and the blind spot shared across                     identify objects in the top cells.
+both events. Participants used three separate two-dimensional (2D)                       Similar to previous modeling work probing mental state inferences,
+continuous trackpads to report their inferences and certainty (i.e.,                 our analyses focused on average judgments per trial (1–4, 6, 9). This
+the closer they moved the marker toward a corner, the greater their                  allowed us to reveal the shared signal across participant judgments
+certainty about the identified cell; see Fig. 1 and the Supplementary                while removing potential noise introduced by requesting partici-
+Materials for details).                                                              pants to report explicit inferences on a trackpad. Consistent with
+    Participant judgments showed a high fit to our quantitative theory               this, individual participant belief inferences showed an average r =
+of mind model, with a correlation of r = 0.95 for belief inferences                  0.59 correlation with our theory of mind model, and a significantly
+[95% confidence interval (CI95%): 0.92 to 0.98] and a correlation of                 lower r = 0.35 correlation with our deductive model [t(59) = 5.43,
+r = 0.99 (CI95%: 0.99 to 1.00; Fig. 3, A and B) for referent inferences.             P < 0.0001 by paired t test]. Similar to our main results, a subject-
+See Fig. 1 (A to F) for six example trials. The fact that people were                level analysis showed no difference across models on referent in-
+not only able to infer speakers’ mental states qualitatively but also to             ferences [r = 0.93 for both models; t(59) = 0.38, P = 0.71 by paired
+shift these judgments with the fine-grained precision characteristic                 t test].
+of action understanding tasks suggests that participants were in-
+deed able to perform quantitative theory of mind inferences from                     Experiment 2: Adjusting mental state inferences based
+these simple linguistic events. To further evaluate this possibility, we             on speaker’s communicative style
+considered our alternative model that performed deductive mental                     The results from experiment 1 show that people can infer speakers’
+state inferences. This model’s referent inferences also matched par-                 knowledge based on their adjective use. In that task, inferences relied
+ticipant judgments with high precision (r = 0.99; CI95%: 0.99 to 1.00;               only on general expectations of how often speakers use adjectives
+Fig. 3, A and B) and were comparable to the inferences of our theo-                  redundantly or contrastively (38, 39, 45, 46). For these inferences to
+ry of mind model (r = 0.001; CI95%: −0.004 to 0.007). By contrast,                  be accurate, however, they must be sensitive to different speakers’
+the deductive model’s belief inferences were markedly lower (r =                     propensity to use adjectives redundantly. In experiment 2, we thus
+0.56; CI95%: 0.38 to 0.82) and outperformed by our theory of mind                    sought to test whether people adjust their mental state inferences by
+model (r = 0.386; CI95%: 0.15 to 0.56).                                             learning speaker-specific preferences on adjective use.
+    Figure 2 (B to D) (compare to Fig. 1, D to F, for our theory of                      Experiment 2 was conceptually similar to experiment 1, where a
+mind’s model predictions on the same displays) shows three exam-                     hypothetical speaker with a blind spot described shapes in different
+ple trials where participants readily combined information from                      visual displays. However, in contrast to experiment 1, experiment
+both displays to jointly infer the speaker’s intended referents and                  2 now used five consecutive trials with the same speaker, allowing
+belief, while the deductive model produced inferences that failed to                 participants to learn speakers’ propensity to use redundant adjectives.
+extract information available by thinking about the speaker’s word                   In addition, experiment 2 used size adjectives that, unlike color ad-
+choice (see the Supplementary Materials for trial-by-trial plots). In                jectives, have a default contrastive interpretation (47). Therefore, a
+
+Jara-Ettinger and Rubio-Fernandez, Sci. Adv. 7, eabj0970 (2021)   17 November 2021                                                                                    4 of 10
+
+SCIENCE ADVANCES | RESEARCH ARTICLE
+
+                                                                                Experiment 1                                                                                     Experiment 2
+
+                            A                     Theory of mind model                       Deductive model                               C                                   Theory of mind model
+                                         1
+
+
+
+
+              Participant judgments                                                                                                      Participant judgments
+                                      0.75                                                                                                                       0.75
+
+
+
+                                      0.50                                                                                                                       0.50
+
+
+                                      0.25                                                                                                                       0.25
+
+
+                                        0
+                                             0         0.25    0.50      0.75     1 0        0.25       0.50     0.75    1                                              0       0.25   0.50     0.75           1
+                                                                            Model predictions                                                                                    Model predictions
+
+
+
+
+                                                                                                                                                                                                                             Downloaded from https://www.science.org at Stanford University on November 22, 2026
+                     B                                  ToM model                            Deductive model                            D                                          ToM model
+                                         1                                                                                                                 1
+
+                                      0.75                                                                                              0.75
+
+
+              Correlation                                                                                                 Correlation
+                                      0.50                                                                                              0.50
+
+                                      0.25                                                                                              0.25
+
+                                        0                                                                                                               0
+                                                 Ref              Beli                      Ref                Beli                                                 Ref              Beli       Red
+                                                    eren              efs                      eren                efs                                                  eren             efs           und
+                                                           t                                        t                                                                       t                              ancy
+
+Fig. 3. Overall results for experiments 1 and 2. (A) Results from experiment 1. Each dot represents a judgment with model prediction on the x axis and average partic-
+ipant judgments on the y axis. Color indicates inference type (referent or belief). (B) Experiment 1 correlations as a function of model and inference type. (C) Results from
+experiment 2. (D) Experiment 2 correlations as a function of inference type. Black vertical bars show 95% bootstrapped CIs. ToM, theory of mind.
+
+
+
+
+failure to treat a size adjective as revealing speakers’ knowledge of                                          as the referent and the top-left one as the blind spot. As predicted,
+the contrast object is a conservative test for how participants adjust                                         this pattern appeared when the speaker was maximally succinct
+their inferences to speaker-specific communicative styles.                                                     (leftmost pair in Fig. 4, B and C). If, instead, participants treated the
+    All participants first completed three consecutive trials where                                            adjective in the fourth trial as a redundant use, then they should be
+the speaker alternated between referring to the top-right and the                                              unable to identify the referent or the blind spot in the fifth trial. We
+bottom-left cells, revealing that their blind spot must be the                                                 obtained this predicted pattern when the speaker was maximally
+top-left or the bottom-right cell (actual cell positions randomized                                            redundant (rightmost pair in Fig. 4, B and C), with the intermediate
+across participants; Fig. 4A). The descriptions of the targets were                                            conditions revealing a graded transition.
+always unambiguous, but speakers varied in their propensity to use                                                 Consistent with the qualitative distributions, our quantitative
+redundant size adjectives, ranging from being maximally succinct                                               theory of mind model showed a strong fit to participant judgments
+(0/3 redundant uses) to maximally redundant (3/3 redundant uses).                                              (r = 0.96; CI95%: 0.94 to 0.98; Fig. 3C), and this correlation was com-
+In the fourth trial (last display in Fig. 4A), the speaker always used a                                       parably strong in each component of referent inferences (r = 0.99; CI95%:
+size adjective that, if interpreted contrastively, revealed that they                                          0.98 to 1.00), redundancy tracking (r = 0.82; CI95%: 0.72 to 0.97),
+could see the bottom-right cell (although the likelihood of a con-                                             and belief inferences (r = 0.85; CI95%: 0.71 to 1.00; Fig. 3D). Note
+trastive use depended on the speaker’s redundancy in the previous                                              that participants here made a single mental state inference, and we
+trials). In each of these four trials, participants were asked to iden-                                        therefore cannot perform subject-level model correlations.
+tify the speaker’s referent using a 2D trackpad and to rate the speaker’s                                          The pattern we observed in experiment 2 also provides conclu-
+propensity to speak redundantly (using a continuous slide bar; see                                             sive evidence against our deductive model. By not being able to con-
+Materials and Methods).                                                                                        sider speakers’ choice of words, the deductive model cannot learn
+    In the fifth and critical trial, participants had to jointly infer the                                     speaker-specific levels of redundancy, cannot make any mental state
+speaker’s intended referent and their blind spot. Here, speakers                                               inferences on the fourth trial, and can never derive the joint infer-
+always produced the ambiguous description “the star,” which could                                              ence on the fifth trial (as a consequence, the model predictions have
+refer to the top-left or bottom-right cells. If participants treated the                                       no variance, and it is not possible to compute a correlation between
+adjective in the fourth trial as contrastive (inferring that the speaker                                       model predictions and participant judgments; see the Supplemen-
+sees the bottom-right cell), they should identify the bottom-right cell                                        tary Materials for details).
+
+Jara-Ettinger and Rubio-Fernandez, Sci. Adv. 7, eabj0970 (2021)                         17 November 2021                                                                                                           5 of 10
+
+SCIENCE ADVANCES | RESEARCH ARTICLE
+
+                           A The [large] rectangle          The [large] square            The [small] circle          The small triangle
+
+
+
+
+                           B                                                      The star
+
+
+
+
+                                                                                                                                                                              Downloaded from https://www.science.org at Stanford University on November 22, 2026
+                           C
+
+
+
+
+                                   0/3 redundant                  1/3 redundant              2/3 redundant               3/3 redundant
+                                     utterances                     utterances                 utterances                  utterances
+
+                                   Referent inference                                           Belief inference
+Fig. 4. Experiment 2 inference distributions. (A) Trials 1 to 4 in experiment 2. The text above each display shows the speaker’s description. The use of size adjectives in
+brackets varied across conditions (from 0/3 to 3/3 redundant uses). The red rings show the distribution of selections on the trackpad. (B and C) Referent inferences (red)
+and knowledge inferences (blue) on the fifth trial as a function of speaker’s redundancy. When the speaker was maximally succinct (leftmost pair), participants inferred
+that the ambiguous description referred to the bottom-right cell (making the top-left cell the blind spot); when the speaker was maximally redundant (rightmost pair),
+participants were unable to identify the referent or the blind spot.
+
+
+Experiment 3: Joint referent and belief inferences                                     model, showing that people can continue to make quantitative
+from different adjective types and words                                               knowledge inferences in contexts with real-world objects and vari-
+While the results from experiments 1 and 2 show that people can                        able adjective types. Critically, the correlation strength was compa-
+make nuanced mental state inferences from how people speak, they                       rable across all adjective types, with r = 0.97 (CI95%: 0.92 to 0.99) for
+also leave three questions open. First, these studies used simple                      color modification, r = 0.95 (CI95%: 0.85 to 0.98) for size modifi-
+geometrical shapes as referents, enabling us to manipulate key con-                    cation, and r = 0.96 (CI95%: 0.87 to 0.98) for category modification.
+trasts while controlling for visual features. Would these results gen-                 Moreover, participants’ preferred identified referent matched our
+eralize to natural real-world objects? Second, experiments 1 and 2                     model’s in 83.33% of trials (n = 40 of 48 trials; P < 0.0001 by bino-
+focused on people’s choice of color and size adjectives, respectively.                 mial test with chance set to 0.25).
+However, people’s knowledge is often also reflected in their noun
+choice rather than adjective use (e.g., a person aware of two dogs in
+a scene might choose to call the target dog “the Labrador” to avoid                    DISCUSSION
+ambiguity). Last, the strength of mental state inferences depends on                   Our results show that people can make nuanced mental state attri-
+how often people use redundant adjectives. Can people flexibly ad-                     butions from the simplest linguistic events, such as the inclusion or
+just their expectations within a single task that varied adjective                     omission of a single adjective in referential communication. In
+type? To answer these questions, we conducted a simplified replica-                    experiment 1, people were able to jointly infer speakers’ intended
+tion of experiment 1 using pictures of real-world objects, where we                    referents and beliefs, and the confidence they reported in these in-
+varied color modification, size modification, and noun choice with-                    ferences matched the quantitative structure of our theory of mind
+in participants.                                                                       model. These results mirror the fine-grained inferences characteris-
+   Overall, participant inferences about speaker knowledge showed                      tic of “core” theory of mind tasks (1, 4, 6). Furthermore, in experi-
+a correlation of r = 0.95 (CI95%: 0.92 to 0.97) with our computational                 ment 2, people showed how they adjust their mental state inferences
+
+Jara-Ettinger and Rubio-Fernandez, Sci. Adv. 7, eabj0970 (2021)    17 November 2021                                                                                6 of 10
+
+SCIENCE ADVANCES | RESEARCH ARTICLE
+
+                                                            A      The red watch             B     The small sofa             C      The carnation
+
+
+
+
+                                    D               1                Color                                 Size                             Category
+
+
+
+
+                          Participant judgments
+                                                  0.75
+
+
+
+
+                                                  0.50
+
+
+
+
+                                                                                                                                                                                      Downloaded from https://www.science.org at Stanford University on November 22, 2026
+                                                  0.25          r = 0.97; CI95%: 0.92–0.99       r = 0.95; CI95%: 0.85–0.98       r = 0.96; CI95%: 0.87–0.98
+                                                     0.25          0.50      0.75      1 0.25       0.50          0.75   1 0.25      0.50        0.75    1
+                                                                                                  Model predictions
+
+Fig. 5. Experiment 3 examples and overall results. (A to C) Three examples from the experiment using (A) color modification, (B) size modification, and (C) noun choice.
+In each trial, participants had to identify the referent and report their belief that the speaker could see the object surrounded by the black rectangle. (D) Experiment re-
+sults. x axis shows model predictions, and y axis shows average participant judgments.
+
+
+
+based on a brief exposure to speakers’ propensity to use adjectives                                            At the same time, our work only established this capacity in con-
+redundantly. Last, in experiment 3, people were able to jointly infer                                      texts where interlocutors are explicitly asked to infer mental states
+speakers’ intended referents and beliefs based on how speakers re-                                         with no time pressure. Can people also derive these inferences in
+ferred to real-world objects using different types of adjectives and                                       real time? And, if so, do they do so in everyday conversation? Al-
+nouns with different degrees of specificity. Together, these experi-                                       though these questions remain open, related research has found that
+ments show that people can perform joint inferences about speakers’                                        listeners can make real-time inferences to anticipate what a speaker
+communicative intent and mental states from people’s utterances at                                         is talking about based on subtle speaker word choices like the ones
+high levels of precision and accuracy.                                                                     that we manipulated here (39, 46, 50, 51). These results show that
+    While our goal was to characterize how people extract mental                                           listeners can derive online inferences about referential intent, but
+state information from language, experiment 1 also revealed an in-                                         they leave open the question of whether this capacity extends to in-
+teresting finding: Reference can often be resolved accurately with-                                        ferences about speaker knowledge. Recent research has also found
+out attending to speakers’ knowledge, as our deductive model also                                          that people spontaneously infer and track interlocutor knowledge
+captured participants’ pattern of reference resolution. This was only                                      in communicative interactions (43, 52, 53), confirming that theory
+possible, however, because most of the referential expressions we used                                     of mind is also deployed in real-time communication. These find-
+uniquely identified the intended target. Thus, the extent to which                                         ings suggest that listeners actively and spontaneously infer speakers’
+listeners can resolve reference without considering speakers’ mental                                       knowledge during communication. However, it is possible that these
+states may depend on speakers’ willingness to ensure that they pro-                                        real-time inferences are coarse and qualitative (perhaps better
+vide sufficient information for listeners to begin with. These find-                                       approximated by the deductive model for computational conve-
+ings suggest a trade-off between language production and language                                          nience) and that nuanced mental state inferences require additional
+comprehension, where one interlocutor’s usage of theory of mind may                                        time and volition. Even if this is the case, however, these slower in-
+allow their communicative partner to rely less on theory of mind than                                      ferences could still be crucial in conversation and social interactions,
+would be otherwise necessary. These findings therefore inform a                                            enabling listeners to build high-resolution models of speakers’ minds
+broader debate on how cognitive effort is divided between speakers                                         throughout an extended conversation. Therefore, having identified
+and listeners to achieve successful communication (45, 48, 49).                                            a highly skilled use of theory of mind in offline communication, future
+    The skilled use of theory of mind in communication that we                                             studies should investigate the degree of precision of mental state
+identified here is all the more remarkable when we consider that                                           inferences in real-time communication, and whether different factors
+speakers often use adjectives redundantly, especially color (39, 44),                                      (such as speaker preferences or contextual relevance) may determine
+and listeners must adjust their inferences accordingly. Given the                                          whether theory of mind inferences are coarse and qualitative or nu-
+general tendency to produce overinformative descriptions, one might                                        anced and quantitative.
+have thought that listeners would not read too much into a speak-                                              Our work also opens a new question: What purpose do these
+er’s choice of referential expression. However, our study shows that                                       nuanced mental state inferences serve? One possibility is that the
+people can rely on subtle linguistic choices to derive quantitative                                        precise and quantitative nature of mental state inference is a general
+theory of mind inferences that are sensitive to both speakers’ choice                                      signature of theory of mind. If so, then the pressure for quantitative
+of words and their propensity to use them redundantly.                                                     inferences may have emerged from a pressure to understand physical
+
+Jara-Ettinger and Rubio-Fernandez, Sci. Adv. 7, eabj0970 (2021)                       17 November 2021                                                                      7 of 10
+
+SCIENCE ADVANCES | RESEARCH ARTICLE
+
+action, but these inferences are also available in communication be-                 MATERIALS AND METHODS
+cause language-based inferences rely on the same computations                        All research was approved by Massachusetts Institute of Technology
+that underlie action-based inferences.                                               Committee on the Use of Humans as Experimental Subjects (MIT
+    Such a view would suggest that mental state inferences operate                   COUHES; “Development of Visual Perception,” no. 0403000050R016)
+over abstract representations that are modality independent. This                    and Yale Institutional Review Board (“Online reasoning,” no.
+idea is consistent with evidence that inferences from physical action                2000020357).
+are structured around an expectation that agents should expend as
+much effort as necessary to fulfill their physical goal, but no more                 Experiment 1
+(5, 54), which parallels the expectation that agents should say as                   Sixty participants (mean age, 35.22; range, 18 to 73) were recruited
+much as necessary to fulfill their communicative goal, but no more                   from Amazon’s Mechanical Turk platform. Stimuli consisted of 28
+(37, 55). Therefore, quantitative mental state inferences may depend                 trials. Each trial in turn consisted of two 2 × 2 grids with four col-
+on abstract representations of agents’ effort relative to a baseline                 ored geometrical shapes and a definite description of one of them.
+level of physical efficiency (56) and communicative efficiency (as                   Stimuli were randomly split into two subsets of 14 trials, and partic-
+shown in experiment 2).                                                              ipants were presented with only one of the two lists (n = 30 per
+    Quantitative language-based inferences, however, may also be                     condition; see the Supplementary Materials for details). In each tri-
+crucial for communicative success and not a simple side effect of                    al, participants were told that the speaker intended to refer to only
+action-based inferences. In communicative interactions, how we choose                one of the corners and that the speaker could not see one of the four
+
+
+
+
+                                                                                                                                                                Downloaded from https://www.science.org at Stanford University on November 22, 2026
+to respond may depend not only on coarse guesses about other                         corners. Participants were also told that the speaker could not see
+people’s mental states but also on precise and accurate estimates                    the same corner in each display. The speaker’s choice of referential
+of what they may or may not know (and may or may not want to                         expression to single out the target was written above each display.
+know). Moreover, the high-level mental state attributions that we                    Trial order was randomized across participants. The pairs of dis-
+make in communicative interactions (e.g., inferring what someone                     plays were randomly ordered and rotated in each trial.
+may have implied by what they said or left unsaid) likely rely first                     In each trial, participants were presented with three “trackpads,”
+and foremost on rapid analyses of people’s choice of words. These                    each with a circle that the participants could position anywhere they
+communicative demands would put pressure on getting that first                       wished. Participants had to input their belief about the referent in
+layer of mental state inferences right, preventing small errors                      each display in the first two trackpads and their beliefs about the
+to cascade onto larger errors when making broader judgments                          blind spot in the third trackpad. Participants were given two exam-
+about other people’s minds. Our work lays groundwork toward                          ples of how to use the 2D trackpads and two examples of complete
+addressing these questions, enabling studies that can test poten-                    trials to show them how to reason about the blind spot by consider-
+tial cascading errors that could occur in extended conversations as                  ing both displays (see the Supplementary Materials).
+a function of the resolution of the mental state inferences that inter-              Model predictions
+locutors make.                                                                       Our model outputs a posterior distribution over each of the four
+    To conclude, studies on how we infer other people’s men-                         corners (i.e., four probabilities, one for each corner) for both each
+tal states have typically focused on observable action. Our work                     referent inference and for the belief inference (totaling 12 predictions
+shows how people can also extract mental state information from                      per trial). To compare these predictions to participant judgments
+speakers’ choice of words—even those that do not directly encode                     (three trackpad positions per trial), we transformed model predic-
+mentalistic information—with high fidelity. These results most                       tions into trackpad positions by setting the x position to the sum of
+directly show how people come to build nuanced and accurate                          the two probabilities of the right corners and the y position to the
+representations of each other’s minds. At the same time, our re-                     sum of the two probabilities of the top two corners.
+sults also speak to the interaction between language and theory
+of mind.                                                                             Experiment 2
+    Theories about how mental state reasoning and language under-                    One hundred forty-five participants (mean age, 36.08; range, 21 to
+standing interact have typically focused on extreme cases, either                    67) were recruited from Amazon’s Mechanical Turk platform and
+advancing accounts that attempt to explain language understanding                    randomly assigned to one of the four speaker conditions (see Results).
+in terms of nonmentalistic processes (57, 58) or using intrinsically                 Twenty-three of these participants were excluded from analysis for
+mentalistic constructs as theoretical building blocks (37, 48). Our work             failing to correctly identify the referent two or more times during
+provides a different approach toward advancing this debate. By                       the first four unambiguous trials (including these participants in our
+developing computational models of mental state inferences in lan-                   analyses does not affect our conclusions; see the Supplementary
+guage, we can shed light on how language relies on theory of mind,                   Materials for details). Stimuli consisted of five displays of four geo-
+how often and how fast this interaction might take place, and how                    metrical shapes in each of the four conditions (see Fig. 4). The de-
+it varies across communicative situations and speakers. In turn, we                  scription of the target was written above each display. Displays were
+may come to better understand how the neural circuitry behind                        randomly rotated for each participant (thus counterbalancing the
+these computations operates (59) and what happens when the inter-                    location of the referents and blind spots). The displays were pre-
+action between language and theory of mind goes awry. Above and                      sented one a time and remained on the screen in subsequent trials
+beyond all these questions, by charting the connections between how                  to avoid memory load.
+we infer the thoughts in other minds and how we share thoughts                           Participants were assigned to one of four conditions that varied
+across minds, we will better understand what makes us exceptional                    the speaker’s propensity to use redundant size adjectives in trials 1
+social creatures, from passing interactions with strangers to extended               to 3. In the first condition, the speaker used no redundant size ad-
+conversations across our lifetimes.                                                  jectives. In the second condition, the speaker used a redundant size
+
+Jara-Ettinger and Rubio-Fernandez, Sci. Adv. 7, eabj0970 (2021)   17 November 2021                                                                    8 of 10
+
+SCIENCE ADVANCES | RESEARCH ARTICLE
+
+adjective once (on trial 2). In the third condition, the speaker used a              indicate how likely the virtual partner was to see the object inside
+redundant size adjective twice (on trials 1 and 3). Last, in the fourth              a frame (by using a 0-to-10 scale, ranging from “definitely not” to
+condition, the speaker used redundant adjectives on all three trials.                “definitely yes,” with the middle point indicating “maybe”). As part
+    Participants were told that their partners in the game could only                of the instructions, participants were shown a sample display that
+see three of the four shapes in each display, although they were un-                 did not include an adjective in the instructions. Before they could
+aware of this. In the first four trials, participants were asked to iden-            start the task, they had to respond correctly to three questions to
+tify the target the speaker was referring to (using a 2D trackpad) and               ensure that they had understood the instructions.
+to report the speaker’s overall propensity to speak redundantly (using               Model predictions
+a continuous slide bar with labels “never” and “always” on the two                   Model predictions were generated in the same way as in experiment
+extremes, and “sometimes” in the middle). On the fifth trial, partic-                1, with the difference that the hypothesis space consisted of whether
+ipants were asked the same two questions as before, and they were                    the speaker had full knowledge of the display or whether they were
+presented with an additional trackpad that asked them to identify                    unaware of the target.
+the speaker’s blind spot. Raw data visualized in Fig. 4 were obtained
+through kernel density estimation with bandwidth 0.75.                               SUPPLEMENTARY MATERIALS
+Model predictions                                                                    Supplementary material for this article is available at https://science.org/doi/10.1126/
+Model predictions were generated in the same way as in experiment                    sciadv.abj0970
+
+1. In addition, we also included estimates of the expected value of                  View/request a protocol for this paper from Bio-protocol.
+
+
+
+
+                                                                                                                                                                                           Downloaded from https://www.science.org at Stanford University on November 22, 2026
+the speaker’s degree of redundancy by computing the full joint dis-
+tribution p(t, b, r∣u) rather than marginalizing the posterior over r,               REFERENCES AND NOTES
+as shown in Eq. 1.                                                                    1. A. Jern, C. G. Lucas, C. Kemp, People learn other people’s preferences through inverse
+                                                                                         decision-making. Cognition 168, 46–64 (2017).
+                                                                                      2. A. Jern, C. G. Lucas, C. Kemp, Evaluating the inverse decision-making approach to
+Experiment 3                                                                             preference learning, in Advances in Neural Information Processing Systems (Curran
+Two hundred participants (mean age, 37.63; range, 21 to 74 were                          Associates, Inc., 2011), pp. 2276–2284.
+recruited from Amazon’s Mechanical Turk platform (N = 50 per                          3. C. L. Baker, R. Saxe, J. B. Tenenbaum, Action understanding as inverse planning. Cognition
+                                                                                         113, 329–349 (2009).
+condition). Stimuli consisted of 48 displays, each consisting of a set
+                                                                                      4. C. L. Baker, J. Jara-Ettinger, R. Saxe, J. B. Tenenbaum, Rational quantitative attribution
+of four pictures, a target, and a referent (see Fig. 5A). The de-                        of beliefs, desires and percepts in human mentalizing. Nat. Hum. Behav. 1, 0064 (2017).
+scription of the target was written above each display. Displays were                 5. J. Jara-Ettinger, H. Gweon, L. E. Schulz, J. B. Tenenbaum, The naïve utility calculus:
+randomly rotated for each participant (thus counterbalancing the                         Computational principles underlying commonsense psychology. Trends Cogn. Sci. 20,
+location of the referents and blind spots).                                              589–604 (2016).
+                                                                                      6. J. Jara-Ettinger, L. E. Schulz, J. B. Tenenbaum, The naïve utility calculus as a unified,
+    Displays were evenly distributed among three conditions (n = 16                      quantitative framework for action understanding. Cogn. Psychol. 123, 101334 (2020).
+by condition): color condition (e.g., “Select the orange butterfly”),                 7. J. Jara-Ettinger, F. Sun, L. Schulz, J. B. Tenenbaum, Sensitivity to the sampling process
+size condition (e.g., “Select the small sofa”), and category condition                   emerges from the principle of efficiency. Cognit. Sci. 42, 270–286 (2018).
+(understood as the specificity of the noun; e.g., “Select the flower”                 8. J. Jara-Ettinger, Theory of mind as inverse reinforcement learning. Curr. Opin. Behav. Sci.
+                                                                                         29, 105–110 (2019).
+versus “Select the carnation”). For each condition, we considered four
+                                                                                      9. T. Ullman, C. Baker, O. Macindoe, O. Evans, N. Goodman, J. Tenenbaum, Help or hinder:
+trial types (in decreasing order of certainty): (i) direct reference: the                Bayesian models of social goal inference, in Advances in Neural Information Processing
+virtual partner refers directly to the target, which suggests that they                  Systems, Y. Bengio, D. Schuurmans, J. Lafferty, C. Williams, A. Culotta, Eds. (Curran
+can see it (e.g., “Select the dog,” when the picture of the dog appears                  Associates, Inc., 2009), vol. 22, pp. 1874–1882.
+inside the frame); (ii) indirect reference: the virtual partner refers to            10. N. Budwig, A developmental-functionalist approach to mental state talk, in Language,
+                                                                                         Literacy, and Cognitive Development, (Psychology Press, 2002), pp. 73–100.
+the target indirectly by using an adjective contrastively, which sug-                11. B. Keysar, D. J. Barr, J. A. Balin, J. S. Brauner, Taking perspective in conversation: The role
+gests that they are likely to see the target (e.g., “the small sofa,” when               of mutual knowledge in comprehension. Psychol. Sci. 11, 32–38 (2000).
+the big sofa appears inside the frame); (iii) contrastive reference: the             12. S. Lin, B. Keysar, N. Epley, Reflexively mindblind: Using theory of mind to interpret
+virtual partner uses an adjective contrastively but the target is one of                 behavior requires effortful attention. J. Exp. Soc. Psychol. 46, 551–556 (2010).
+                                                                                     13. W. S. Horton, B. Keysar, When do speakers take into account common ground? Cognition
+two contrast objects, which suggests that they may or may not see
+                                                                                         59, 91–117 (1996).
+the target (e.g., “the orange butterfly,” when the target is a blue but-             14. L. W. Lane, M. Groisman, V. S. Ferreira, Don’t talk about pink elephants! Speakers’ control
+terfly but there is also a red butterfly in the display); and (iv) ambiguous             over leaking private information during language production. Psychol. Sci. 17, 273–277
+reference: the virtual partner produces an ambiguous instruction,                        (2006).
+which suggests they cannot see the target (e.g., “the flower,” when                  15. E. Kronmüller, T. Morisseau, I. Noveck, Show me the pragmatic contribution:
+                                                                                         A developmental investigation of contrastive inference. J. Child Lang. 41, 985–1014
+there is a carnation in the display and a buttercup appears inside                       (2014).
+the frame). Four lists of 12 trials were built by crossing the three                 16. J. E. Hanna, M. K. Tanenhaus, Pragmatic effects on reference resolution in a collaborative
+properties of the referent that were manipulated (i.e., color, size,                     task: Evidence from eye movements. Cognit. Sci. 28, 105–115 (2004).
+and specificity) with the four types of instructions (i.e., direct, indi-            17. J. E. Hanna, M. K. Tanenhaus, J. C. Trueswell, The effects of common ground
+                                                                                         and perspective on domains of referential interpretation. J. Memory Lang. 49, 43–61
+rect, contrastive, and ambiguous reference).
+                                                                                         (2003).
+    Participants were randomly allocated to one of the four lists of                 18. D. Heller, D. Grodner, M. K. Tanenhaus, The role of perspective in identifying domains
+materials. The instructions explained that the partner who could see                     of reference. Cognition 108, 831–836 (2008).
+three of the objects in each display and may or may not see the                      19. K. P. Kording, D. M. Wolpert, Bayesian integration in sensorimotor learning. Nature 427,
+fourth object inside a frame. Participants’ task was twofold: They                       244–247 (2004).
+                                                                                     20. M. O. Ernst, M. S. Banks, Humans integrate visual and haptic information in a statistically
+had to indicate which of the four objects the virtual partner was                        optimal fashion. Nature 415, 429–433 (2002).
+asking them to select (by clicking one of four radio buttons, each                   21. D. Kersten, P. Mamassian, A. Yuille, Object perception as bayesian inference. Annu. Rev.
+corresponding with a quadrant in the display), and they had to                           Psychol. 55, 271–304 (2004).
+
+
+Jara-Ettinger and Rubio-Fernandez, Sci. Adv. 7, eabj0970 (2021)   17 November 2021                                                                                              9 of 10
+
+SCIENCE ADVANCES | RESEARCH ARTICLE
+
+22. D. Kahneman, Thinking, Fast and Slow (Farrar, Straus and Giroux, 2011).                        46. J. C. Sedivy, 17 evaluating explanations for referential context effects: Evidence for
+23. G. Gigerenzer, P. M. Todd, Simple Heuristics that Make Us Smart (Oxford Univ. Press, 1999).        cricean mechanisms in online language interpretation, in Approaches to Studying
+24. D. Grodner, J. Sedivy, The effect of speakerspecific information on pragmatic inferences,          World-Situated Language Use: Bridging the Language-as-Product and Language-as-Action
+    in The Processing and Acquisition of Reference (MIT Press, 2005).                                  Traditions (MIT press, 2005), pp.345.
+25. A. Pogue, C. Kurumada, M. K. Tanenhaus, Talker-specific generalization of pragmatic            47. C. Kennedy, L. McNally, Scale structure, degree modification, and the semantics
+    inferences based on under- and over-informative prenominal adjective use. Front.                   of gradable predicates. Language 81, 345–381 (2005).
+    Psychol. 6, 2035 (2016).                                                                       48. D. Sperber, D. Wilson, Relevance: Communication and Cognition (Harvard Univ. Press,
+26. R. Ryskin, C. Kurumada, S. Brown-Schmidt, Information integration in modulation of                 1986), vol. 142.
+    pragmatic inferences during online language comprehension. Cognit. Sci. 43, e12769 (2019).     49. T. F. Jaeger, R. P. Levy, Speakers optimize information density through syntactic
+27. M. C. Frank, N. D. Goodman, Predicting pragmatic reasoning in language games. Science              reduction, in Advances in Neural Information Processing Systems (MIT Press, 2006),
+    336, 998–998 (2012).                                                                               pp. 849–856.
+28. N. D. Goodman, M. C. Frank, Pragmatic language interpretation as probabilistic inference.      50. P. Rubio-Fernandez, J. Jara-Ettinger, Incrementality and efficiency shape pragmatics
+    Trends Cogn. Sci. 20, 818–829 (2016).                                                              across languages. Proc. Natl. Acad. Sci. U.S.A. 117, 13399–13404 (2020).
+29. C. Qing, M. Franke, Variations on a bayesian theme: Comparing bayesian models of               51. P. Rubio-Fernandez, H. A. Terrasa, V. Shukla, J. Jara-Ettinger, Contrastive inferences are
+    referential reasoning, in Bayesian Natural Language Semantics and Pragmatics (Springer,            sensitive to informativity expectations, adjective semantics and visual salience. PsyArXiv
+    2015), pp. 201–220.                                                                                10.31234/osf.io/mr4ah (2019).
+30. M. Franke, J. Degen, Reasoning in reference games: Individual-vs. population-level             52. P. Rubio-Fernández, F. Mollica, M. O. Ali, E. Gibson, How do you know that? automatic
+    probabilistic modeling. PLOS ONE 11, e0154854 (2016).                                              belief inferences in passing conversation. Cognition 193, 104011 (2019).
+31. G. Scontras, N. D. Goodman, Resolving uncertainty in plural predication. Cognition 168,        53. D. Heller, K. S. Gorman, M. K. Tanenhaus, To name or to describe: Shared knowledge
+    294–311 (2017).                                                                                    affects referential form. Topics Cognit. Sci. 4, 290–305 (2012).
+
+
+
+
+                                                                                                                                                                                                      Downloaded from https://www.science.org at Stanford University on November 22, 2026
+32. N. D. Goodman, A. Stuhlmüller, Knowledge and implicature: Modeling language                    54. G. Gergely, G. Csibra, Teleological reasoning in infancy: The naı̈ve theory of rational
+    understanding as social cognition. Topics Cogn. Sci. 5, 173–184 (2013).                            action. Trends Cogn. Sci. 7, 287–292 (2003).
+33. P. Shafto, N. D. Goodman, T. L. Griffiths, A rational account of pedagogical reasoning:        55. D. Baldwin, J. Loucks, M. Sabbagh, Pragmatics of Human Action (Oxford Univ. Press, 2008).
+    Teaching by, and learning from, examples. Cogn. Psychol. 71, 55–89 (2014).                     56. J. D. Ongchoco, J. Jara-Ettinger, Beyond rationality: We infer other people’s goals by
+34. J. Wang, P. Wang, P. Shafto, Sequential cooperative bayesian inference, in Proceedings of          learning agent-variable expectations of efficient action, paper presented at the Annual
+    the 37th International Conference on Machine Learning (PMLR, 2020), pp. 10039–10049.               Meeting of the Cognitive Science Society, New Haven, CT, 2020.
+35. S. R. Searcy, P. Shafto, Cooperative inference: Features, objects, and collections. Psychol.   57. C. Gauker, Zero tolerance for pragmatics. Synthese 165, 359–371 (2008).
+    Rev. 123, 510–533 (2016).                                                                      58. R. G. Millikan, Language, Thought, and Other Biological Categories: New Foundations for
+36. N. D. Goodman, J. B. Tenenbaum, J. Feldman, T. L. Griffiths, A rational analysis                   Realism (MIT Press, 1984).
+    of rule-based concept learning. Cognit. Sci. 32, 108–154 (2008).                               59. A. M. Paunov, I. A. Blank, E. Fedorenko, Functionally distinct language and theory of mind
+37. H. P. Grice, Logic and conversation, in Speech Acts (Brill, 1975), pp. 41–58.                      networks are synchronized at rest and during language comprehension. J. Neurophysiol.
+38. P. Rubio-Fernandez, F. Mollica, J. Jara-Ettinger, Speakers and listeners exploit word order        121, 1244–1265 (2019).
+    for communicative efficiency: A cross-linguistic investigation. J. Exp. Psychol. Gen. 150,
+    583–594 (2021).                                                                                Acknowledgments
+39. J. C. Sedivy, Pragmatic versus form-based accounts of referential contrast: Evidence           Funding: This material is based upon work supported by the Center for Brains, Minds, and
+    for effects of informativity expectations. J. Psycholinguist. Res. 32, 3–23 (2003).            Machines (CBMM), funded by National Science Foundation (NSF) Science and Technology
+40. P. E. Engelhardt, K. G. Bailey, F. Ferreira, Do speakers and listeners observe the Gricean     Center (STC) award CCF-1231216, and by the Research Council of Norway (Young Research
+    maxim of quantity? J. Mem. Lang. 54, 554–573 (2006).                                           Talent Grant awarded to P.R.-F.; award 230718). Author contributions: P.R.-F. and J.J.-E.
+41. P. E. Engelhardt, F. Ferreira, Do speakers articulate over-described modifiers differently     conceptualized the study and experiments. P.R.-F. designed the stimuli for experiments 1 to 3,
+    from modifiers that are required by context? implications for models of reference              and J.J.-E. programmed the experiments. J.J.-E. implemented the computational model and
+    production, Language. Cogn. Neurosci. 29, 975–985 (2014).                                      analyzed the data in collaboration with P.R.-F. Both authors wrote the manuscript. Competing
+42. A. S. Nadig, J. C. Sedivy, Evidence of perspective-taking constraints in children’s on-line    interests: The authors declare that they have no competing interests. Data and materials
+    reference resolution. Psychol. Sci. 13, 329–336 (2002).                                        availability: All data needed to evaluate the conclusions in the paper are present in the paper,
+43. P. Rubio-Fernández, The director task: A test of theory-of-mind use or selective attention?    the Supplementary Materials, and/or at https://osf.io/h8qfy/.
+    Psychon. Bull. Rev. 24, 1121–1128 (2017).
+44. P. Rubio-Fernandez, Overinformative speakers are cooperative: Revisiting the Gricean
+    maxim of quantity. Cognit. Sci. 43, e12797 (2019).                                             Submitted 20 April 2021
+45. R. D. Hawkins, H. Gweon, N. D. Goodman, The division of labor in communication:                Accepted 28 September 2021
+    Speakers help listeners account for asymmetries in visual perspective. Cognit. Sci. 45,        Published 17 November 2021
+    e12926 (2021).                                                                                 10.1126/sciadv.abj0970
+
+
+
+
+Jara-Ettinger and Rubio-Fernandez, Sci. Adv. 7, eabj0970 (2021)             17 November 2021                                                                                            10 of 10
+
+    Quantitative mental state attributions in language understanding
+    Julian Jara-Ettinger and Paula Rubio-Fernandez
+
+
+
+    Sci. Adv. 7 (47), eabj0970. DOI: 10.1126/sciadv.abj0970
+
+
+
+
+                                                                                                                                       Downloaded from https://www.science.org at Stanford University on November 22, 2026
+    View the article online
+    https://www.science.org/doi/10.1126/sciadv.abj0970
+    Permissions
+    https://www.science.org/help/reprints-and-permissions
+
+
+
+
+Use of this article is subject to the Terms of service
+
+Science Advances (ISSN 2375-2548) is published by the American Association for the Advancement of Science. 1200 New York Avenue
+NW, Washington, DC 20005. The title Science Advances is a registered trademark of AAAS.
+
+Copyright © 2021 The Authors, some rights reserved; exclusive licensee American Association for the Advancement of Science. No claim
+to original U.S. Government Works. Distributed under a Creative Commons Attribution NonCommercial License 4.0 (CC BY-NC).
+

@@ -1,0 +1,541 @@
+                               Supplementary Materials for
+           Quantitative mental state attributions in language understanding
+
+                           Julian Jara-Ettinger* and Paula Rubio-Fernandez
+
+
+                           *Corresponding author. Email: julian.jara-ettinger@yale.edu
+
+                           Published 17 November 2021, Sci. Adv. 7, eabj0970 (2021)
+                                         DOI: 10.1126/sciadv.abj0970
+
+This PDF file includes:
+
+       Sections S1 to S7
+       Figs. S1 S10
+       Tables S1 to S7
+
+Supplementary Text
+
+S1. Computational model
+
+Derivation of Eq. 1 in main text
+
+                   𝑝(𝑡, 𝑏|𝑢)                       ∝ 𝑝(𝑢|𝑡, 𝑏)𝑝(𝑡, 𝑏)
+                                                   = 𝑝(𝑢|𝑡, 𝑏)𝑝(𝑡|𝑏)𝑝(𝑏)
+
+
+                                                   = ∑ 𝑝(𝑢, 𝑟|𝑡, 𝑏)𝑝(𝑡|𝑏)𝑝(𝑏)
+                                                      𝑟∈[0,1]
+
+
+
+                                                   = ∑ 𝑝(𝑢|𝑡, 𝑏, 𝑟)𝑝(𝑟)𝑝(𝑡|𝑏)𝑝(𝑏)
+                                                      𝑟∈[0,1]
+
+
+Model code
+
+All model code is available on our OSF site. To execute the code, please use python 2.7 with the
+numpy and scipy libraries installed. The scripts Exp1_GetPredictions.py and
+Exp2_GetPredictions.py will generate the .csv model predictions used in the paper.
+
+Extended model explanation
+
+Our computational model requires that we compute p(b), p(t|b), and p(u|t,b,r). To model our
+tasks, we used a uniform distribution for p(b) (i.e., p(b)=1/4 for each of the four possible
+beliefs), and a uniform distribution over observable objects for p(t|b) (i.e., p(t|b)=1/3 whenever
+target t is in belief b, and 0 otherwise).
+         Finally, p(u|t,b,r) is calculated through a generative model that captures how speakers
+generate utterances that uniquely identify their targets according to their beliefs and their
+(unobservable) propensity to use redundant adjectives. To compute this probability, we assume
+that the speaker uses a simple mental model of how a listener would identify the target under
+different descriptions, in line with the Rational Speech Acts and the Inverse Planning
+frameworks (1-6,27-28).
+         The simple listener model returns a uniform probability distribution over potential targets
+that match the utterance. For instance, if the speaker sees a blue triangle, a blue square, and a
+green square, then the utterances `the triangle' and `the blue triangle' would both return a
+probability of 1 for the triangle, and 0 for the two squares. By contrast, the utterance `the square'
+would return a probability of 0.5 for each square, and 0 for the triangle. Using this simple listener
+model, the speaker selects the shortest utterance that uniquely identifies the referent.
+
+         This listener model returns a uniform distribution over potential targets that match the
+utterance. For instance, if the speaker sees a blue triangle, a blue square, and a green square, then
+the utterances `the triangle' and `the blue triangle' would both return a probability of 1 for the
+triangle, and 0 for the two squares. By contrast, the utterance `the square' would return a
+probability of 0.5 for each square, and 0 for the triangle. Using this simple listener model, the
+speaker selects the shortest utterance that uniquely identifies the referent.
+         Speakers, however, can accidentally be under- or overspecific. We thus include a small
+probability that the speaker will produce an utterance that is insufficiently informative (the
+Underspecification parameter), and a small probability that the speaker will include a redundant
+modifier (the Overspecification parameter). Naturally, speakers can be under-informative for
+many reasons, including distraction, accidents, and maliciousness and the Underspecification
+parameter is intended to capture the overall probability of failing to introduce a necessary
+adjective, independent of its reason. Similarly, the Overspecification parameter is intended to
+capture multiple reasons for which speakers are over-informative. Redundant color adjectives,
+for instance, are often used by speakers to help listeners identify the referent more efficiently
+than would be otherwise possible (38).
+         We estimate both parameters through participant judgments (with different parameters
+for each adjective type; see Parameter estimation studies below). Formally, the Under-
+specification parameter is the probability that the speaker will believe that a proposed utterance
+is sufficiently informative, independent of the simple listener model's output. Similarly, the
+Overspecification parameter is the probability that the speaker will use a modified expression
+without evaluating if a simpler one would have sufficed.
+         We treat the probability of under-specification as observable and constant across all
+speakers. That is, we assume that listeners do not question that speakers are generally
+cooperative (as told in the task instructions; see OSF site), but they nonetheless understand that
+they can accidentally fail to specify the referent.
+By contrast, we treat the probability of over-specification as unobservable and variable across
+speakers. That is, we assume that listeners believe that different speakers may be more or less
+likely to use adjectives redundantly and that each speaker's individual tendency to use redundant
+adjectives must be inferred. Nonetheless, we assume that participants have prior beliefs about
+how often people speak redundantly.
+
+S2. Experiment 1 additional information
+
+Stimuli
+
+Displays were created by combining 4 shapes (circle, square, triangle and star) in 4 colors (red,
+green, blue and yellow). We generated 4 possible conditions for each display by crossing the
+presence or absence of a color adjective in the target description with the presence or absence of
+a contrast shape in the display (Table S1). Each trial included 2 displays. Depending on whether
+the position of the Target and/or the Contrast Shape overlapped across the two displays, we
+distinguished 6 patterns of overlap (Table S2). The combination of 4 display conditions and 6
+patterns of overlap resulted in 31 trial types, which were labeled by the condition of the display
+on the left, the condition of the display on the right, and the overlap pattern (e.g., ‘ACN’ stood
+for Ambiguous display on the left; Contrastive display on the right; No overlap). 3 trial types
+were not included in the study because they were inconsistent with the assumptions of the task
+
+(Table S3). Based on pilot data to estimate task duration, we randomly split the resulting 28 trial
+types into two lists, each including 14 different trials (Table S4).
+
+Procedure
+
+Participants first read a brief tutorial and had to complete a small questionnaire to ensure they
+read the instructions. Participants who got at least one question wrong were redirected to the
+beginning of the tutorial and only participants who responded to all questions correctly were
+allowed to participate in the study. See our OSF site for screenshots of the tutorial, inclusion
+questionnaire, and test screen.
+
+Subject-level results
+
+At the subject level, participants showed an average correlation of 0.59 with belief inferences
+and 0.93 with reference inferences against our ToM model (Figure S1). Against our lesioned
+model, participants showed an average correlation of 0.35 with belief inferences and 0.93 on
+reference inferences against the alternative model. The difference in subject-level correlations
+was significantly different on belief inferences (t(59)=5.43; p<0.0001 by paired t-test) but no on
+referent inferences (t(59)=0.38; p=0.71 by paired t-test).
+
+     Qualitatively, 75.00% of participants (n=45 out of 60) correlated better with the ToM model
+than with the lesioned model on belief inferences, and 50.00% of participants (n=3 out of 60)
+correlated better with the ToM model than with the alternative model on reference inferences
+(Figure S2).
+
+Trial by trial comparisons
+
+Trial by trial comparisons are shown in Tables S5-S6. To generate these trackpad visualizations
+that compare model predictions against participant judgments, we standardized average
+participant judgments, setting the lowest observed average estimate was to 0 and the maximum
+set to 1 (formally we do this by subtracting the lowest obtained value from all average
+judgments, and then dividing them by the revised highest value; see OSF site for code).
+
+S3. Experiment 2 additional information
+
+Stimuli
+
+Please see Main text for stimuli design. The visual displays were randomly rotated for each
+participant, such that the location of the referents and blind spot was counterbalanced across
+participants.
+
+Procedure
+
+Participants first read a brief tutorial and had to complete a small questionnaire to ensure they
+read the instructions. Participants who got at least one question wrong were redirected to the
+beginning of the tutorial and only participants who responded to all questions correctly were
+
+allowed to participate in the study. See our OSF site for screenshots of the tutorial, inclusion
+questionnaire, and test screen.
+
+Exclusion criteria
+
+Because the first four trials unambiguously identified one of the four cells, only participants who
+got at most one of the first four trials incorrect were included in the study. An answer was
+considered correct if participants positioned the referent market on the correct quadrant. Our
+study aimed to have n=30 participants per list. Due to randomization and exclusions the final
+sample size varied by condition (Table S7).
+
+Results without excluding participants
+
+For completeness, we also present model results with the excluded participants. Fig. S3 shows
+our key results without excluding the 23 participants who failed to identify the correct target two
+or more times in the first four trials. When no excluding participants, our overall model
+correlation decreased from 0.96 to 0.95 (Fig. S4).
+
+Alternative model
+
+In this study we did not consider our alternative model because it is unable to make different
+predictions across conditions. This is shown in Fig. S5. Here, all predictions about the critical
+trials are centered in 0.5. Note that the small variation is due to the sampling nature of our
+inference algorithm. This lack of variability is because this model does not consider speaker’s
+word choices. Consequently, it fails to update its estimate of speakers’ redundancy, or treat the
+adjective in trial 4 contrastively. Because the model has zero variance on common ground and
+redundancy information, it is not possible to compute correlations.
+
+Subject-level correlations
+
+Subject-level correlations are shown in Fig. S6. We include these analyses for completeness.
+Note, however, that the subject-level data collected in Experiment 2 was highly impoverished.
+Each participant provided only four redundancy estimates, making individual correlations
+difficult to interpret. Similarly, participants only completed one common ground inference trial
+and we therefore do not compute correlations for that case. Average correlation at the subject-
+level was 0.24 (95% CI: 0.16-0.32) for redundancy estimates and 0.90 (95% CI: 0.88-0.92) for
+reference estimates.
+
+S4. Experiment 2 in-lab variant
+
+Experiment 2 in-lab variant consists of a simple replication of the extreme conditions of
+Experiment 2, with participants tested live rather than online.
+
+        Participants were presented with five consecutive displays, one at a time, allowing
+participants to learn how the agent speaks. Fig. S7 shows the two experimental conditions. In
+both conditions, participants completed five sequential trials consisting of the same displays and
+
+the same targets. Participants were told that the speaker could not see the same (unknown) cell in
+all trials (the top-left one in Fig. S7, although this was randomly rotated across participants). As
+in Experiment 1, participants were asked only to infer the referent in each trial, and to perform a
+joint referent and blind spot inference in the final critical trial to test if they adjusted this
+inference based on their speaker’s preferences. The top row of Fig. S7 shows the ‘succinct
+speaker’ condition, where the speaker produced size adjectives only when necessary. On the first
+display, the description “The square” reveals that the speaker is referring to the bottom-right cell,
+and all participants positioned the referent in the trackpad to that corner accordingly. Similarly,
+the next description “The circle” uniquely identifies the top-right corner. By this point, the blind
+spot must be either the top-left or the bottom-right corner. The third and fourth displays then
+provide indirect evidence that the top-left corner is the blind spot. On the third display, the
+description “The small triangle” again uniquely specifies the bottom-left cell. However, the
+modifier “small” suggests that the speaker can see the bottom-right cell and adjusted their
+description accordingly. On the fourth display “the rectangle” is now ambiguous. Combined with
+the fact that the speaker has previously talked about objects on the top-right corner (in the second
+display), participants were overall able to infer that the speaker was referring to the rectangle on
+the top-right cell. Finally, in the last and critical trial, the ambiguous description “The star” could
+identify the top-left or bottom-right cells. Our model predicts that participants should infer that
+the referent is in the bottom-right cell and that that the blind spot is in the top-left cell. This is
+indeed what we observed with participants (Fig. S7a for distribution of referent identifications,
+and Fig S7c for distribution of blind-spot inferences). The bottom row of Fig S7a shows the
+‘verbose speaker’ condition, where the speaker constantly produced unnecessary size adjectives.
+The trial sequence was presented in the same order, with the difference that the speaker always
+modified the referent with a size adjective. Thus, if participant mental-state inferences are
+adjusted by how the speaker uses redundant adjectives, the inferences licensed in the ‘succinct
+speaker’ condition should no long be warranted after the evidence in the initial two trials that the
+speaker is unnecessarily redundant. Thus, our model predicts that, in this condition, participants
+should be unable to determine the referent or the blind spot in the final trial, as can be seen in
+Fig. S7a and S7c. Consistent with the results of Experiments 1 and 2, we found a strong
+correlation (r=0.94; 95% CI: 0.90-0.99) between our model predictions and participant
+judgments. By contrast, the rule-based model showed a correlation of only 0.67 (95% CI: 0.48-
+0.89), which was reliably lower than our main model’s (Difference: 0.29; 95% CI: 0.08-0.44).
+
+Methods
+
+60 Yale University undergraduates were recruited and randomly assigned to the reliable speaker
+or the unreliable speaker conditions (n=31 unreliable condition; n=29 reliable condition).
+Participants were provided a link and completed the task on their own time. Stimuli consisted of
+5 displays of 4 geometrical shapes in each of the two conditions (see Fig. S7). The description of
+the target was written above each display. The displays were presented one a time and remained
+on the screen in subsequent trials to avoid memory load. Participants were told that their partner
+in the game could only see 3 of the 4 shapes in each display, although he was unaware of this.
+Their task was to (i) identify the target in each display following the partner's description and (ii)
+figure out which quadrant the partner could not see. Participants were asked to click closer to the
+corner of the display the more certain they were that that was the target. At the end of the 5 trials,
+participants were asked to indicate in a separate display which quadrant was their partner's blind
+
+spot. The reliable and unreliable conditions differed only on the specificity of the descriptions: in
+the reliable condition, the partner used size adjectives contrastively (e.g., to distinguish the small
+triangle from the big one), whereas in the unreliable condition, he used size adjectives
+systematically. In doing so, the size contrast could not be used as a reliable clue about the shapes
+that he could see on the grid. Participants were therefore able to figure out the blind spot in the
+reliable condition, but not in the unreliable condition.
+
+S5. Over- and under-specification priors for Experiment 1
+
+The goal of Supplemental study 1 was to estimate the model’s prior probability that agents use
+color words redundantly, or that speakers omit color words accidentally in color-variable
+displays
+
+Participants
+
+50 participants from the US were recruited through Amazon’s Mechanical Turk framework.
+
+Stimuli
+
+Stimuli is available at our OSF site. Each stimulus consisted of a picture with either one or two
+geometrical shapes (squares, circles, triangles, and stars). In total we had sixteen single-shape
+images and four two-shape trials. All two-shape trials consisted of two shapes of the same kind
+(e.g., two squares) that varied in color. All trials had a target surrounded by a box (i.e., in the
+single-shape images the figure was surrounded by a box, and in the two-shape trials one of the
+two shapes was surrounded by a box).
+
+Procedure
+
+Participants read a brief set of instructions and were asked to complete a short quiz to ensure
+they understood the instructions (see OSF site). Participants then completed eight trials in
+random order (all four two-figure trials; and a random subset of four one-figure trials). In each
+trial participants were asked “what would the average person call the object in the box?” and
+could select either the bare description (e.g., “triangle”) or a color-modified description (e.g.,
+“green triangle”). For simplicity the bare description always appeared on the left side and the
+modified description on the right side. In the trials with two figures, the position of the target
+referent (left or right) was counterbalanced.
+
+Analysis
+
+        Under-specification. In our model, the probability of underspecification is a fixed
+parameter that is not inferred. We estimated this parameter by calculating the average number of
+times that participants selected the bare description in the trials with two shapes that could only
+be disambiguated by color (4 trials per participant), and we then calculate the average across
+participants. Average participant endorsement of an under-specific description happened 5.5% of
+the time.
+
+        Over-specification. In our model, speakers’ amount of over-specification is unobservable
+and can be inferred. We set this prior distribution by fitting a Beta distribution through maximum
+likelihood (see OSF site for analyses) to the proportion of times that each participant endorsed an
+over-specific expression in the single shape trials (4 trials per participant). This resulted in
+parameters alpha = 0.39 and beta = 0.32. See Fig. S8.
+
+S6. Over- and under-specification priors for Experiment 2
+
+The goal of Supplemental study 2 was to estimate the model’s prior probability that agents use
+size words redundantly, or that speakers omit size words accidentally in size-variable displays.
+
+Participants
+
+50 participants from the US were recruited through Amazon’s Mechanical Turk framework.
+
+Stimuli
+
+Stimuli is available at our OSF site. Each stimulus consisted of a picture of either one blue
+geometrical shape (squares, circles, rectangles, stars, and triangles). Each stimulus contained
+either a single shape (6 trials; 3 big shapes and 3 small shapes) or two shapes of different sizes (6
+trials). All stimuli had a target surrounded by a box (i.e., in the single-shape images the figure
+was surrounded by a box, and in the two-shape trials one of the two shapes was surrounded by a
+box; n=3 surrounded the big shape and in n=3 surrounded the small shape).
+
+Procedure
+
+Participants read a brief set of instructions and were asked to complete a short quiz to ensure
+they understood the instructions (see OSF site for details).
+
+        Participants then completed all 12 trials in random order. In each trial participants were
+asked “what would the average person call the object in the box?” and could select either the
+bare description (e.g., “triangle”) or a color-modified description (e.g., “small triangle”). For
+simplicity the bare description always appeared on the left side and the modified description on
+the right side. In the trials with two figures, the position of the target referent (left or right) was
+counterbalanced.
+
+Analysis
+
+        Under-specification and over-specification were estimated in the same way as the prior
+estimation studies of Experiment 1. The under-specification parameter was set to 5.6% and the
+over-specification prior distribution was set to a Beta distribution with parameters alpha=0.32,
+beta = 1.12 (see OSF site for details). See Fig. S9.
+
+S7. Over- and under-specification priors for Experiment 3
+
+Supplemental study 3 was equivalent to Supplemental studies 1 and 2, with the difference that
+we estimated the probability of modification and under-specification for all three types of
+modification (size, color, and category).
+
+Participants
+
+50 participants from the US were recruited through Amazon’s Mechanical Turk framework.
+
+Stimuli
+
+Stimuli is available at our OSF site. Each stimulus consisted of a picture of either one or two
+objects, one of which was always surrounded by a box.
+
+Procedure
+
+Participants read a brief set of instructions and were asked to complete a short quiz to ensure
+they understood the instructions (see OSF site for details).
+
+Participants then completed all 12 trials in random order. In each trial participants were asked
+“what would the average person call the object in the box?” and could select either the bare
+description (e.g., “triangle”) or a color-modified description (e.g., “small triangle”). For
+simplicity the bare description always appeared on the left side and the modified description on
+the right side. In the trials with two figures, the position of the target referent (left or right) was
+counterbalanced.
+
+Analysis
+
+Under-specification and over-specification were estimated in the same way as the prior
+estimation studies of Experiments 1 and 2. The under-specification parameter were set to 21.67%
+for category, 4.67% for color, and 16.33% for size. Over-specification prior distributions were
+set to Beta distributions with parameters alpha=0.29, beta = 0.22 for category; alpha=0.43, beta =
+0.82 for color; and alpha=0.28, beta = 1.18 for size (see OSF site for details).
+
+Fig. S1.
+Experiment 1 subject-level correlations against our Theory of Mind model. Each dot represents a
+participant with their correlation against referent inferences on the x axis and belief inferences on
+the y axis. Red x indicates average subject-level correlation.
+
+Fig. S2.
+Experiment 1 subject-level correlations against each model. Each point represents a participant
+with their correlation against the deductive model on the x axis and their correlation against the
+ToM model on the y axis.
+
+Fig. S3.
+Experiment 2 distribution of all participant responses. This figure is equivalent to Figure 4 in the
+main text without excluding participants. a) Trials 1-4. The text above each display shows the
+speaker’s description. The use of adjectives in brackets varied across conditions (from 0/3 to 3/3
+redundant uses). The red rings show the distribution of selections on the trackpad. b-c) Referent
+inferences (red) and knowledge inferences (blue) on the fifth trial, as a function of the speaker’s
+redundancy.
+
+Fig. S4.
+Experiment 2 overall results without excluding participants.
+
+Fig. S5.
+Figure showing how the alternative model fails to produce any variance across conditions in
+Experiment 2, making it impossible to compute a correlation in a meaningful manner.
+
+Fig. S6.
+Subject-level correlations in Experiment 2. Each point represents a participant. Their correlation
+with model referent predictions appears on the x axis and correlation with redundancy estimates
+on the y axis. We do not compute subject-level correlations against belief inferences because
+each participant completed only one common ground trial, providing insufficient data.
+
+Fig. S7.
+Results from in-lab variant of Experiment 2. a) Reference inference and experimental conditions.
+The top row shows the five displays and corresponding utterances presented sequentially in the
+reliable speaker condition. The bottom row shows the sequential displays and utterances in the
+unreliable speaker condition. Red rings in each display show a density plot of reference
+resolution. b) Model predictions against participant results. c) Participant inferences about the
+blindspot on the final trial. The green rings show the overlaid density plot of participant
+judgments when asked to determine the position of the blind-spot on the last trial.
+
+Fig. S8.
+Sample conceptual displays from Experiment 3, illustrating the three Property conditions (color,
+size and category) and the four Reference conditions (Direct, Indirect, Contrastive and
+Ambiguous). All images are covered by the Creative Commons Zero (CC0) license.
+
+                                    Supplemental figure
+Fig. S9.
+Histogram of over-specification data from Supplemental Experiment 1.
+
+Fig. S10
+Histogram of over-specification data from Supplemental Experiment 2.
+
+Table S1.
+Conditions for each of the two displays in a trial of Experiment 1.
+
+ Label        Name                   Description                         Example / Display
+
+   D         Definite      Unmodified definite description /          ‘The triangle’ / 1 triangle
+                           No contrast shape in the display
+
+   C       Contrastive      Modified definite description /      ‘The blue triangle’ / 2 triangles
+                            Contrast shape in the display
+
+   R       Redundant       Modified definite description /       ‘The blue triangle’ / 1 triangle
+                           No contrast shape in the display
+
+   A       Ambiguous       Unmodified definite description /          ‘The triangle’ / 2 triangles
+                            Contrast shape in the display
+
+Table S2.
+Patterns of overlap across the two displays in a trial in Experiment 1.
+
+ Label             Type of overlap                                 Description
+
+   N                  No overlap                The position of the Targets and/or the Contrast
+                                                Shapes did not overlap across the two displays.
+
+    S            Same shape overlap /           The position of the two Targets overlapped
+                       Target                   across the two displays.
+
+   Sii           Same shape overlap /           The position of the two Contrast Shapes
+                   Contrast Shape               overlapped across the two displays.
+
+   D      Different shapes overlap / Target- The position of the Target and the Contrast Shape
+                       Contrast              overlapped across the two displays.
+
+    T          Two shapes overlap /             The position of the two Targets and the position
+            Same Target + Same Contrast         of the two Contrast Shapes overlapped across the
+                                                two displays.
+
+   Tii           Two shapes overlap /           The position of one Target overlapped with the
+                Target-Contrast crossed         position of the Contrast Shape and vice-versa
+                                                across the two displays.
+
+Table S3.
+Trial types excluded from the study due to inconsistencies in Experiment 1.
+
+   Label             Description                          Reason for exclusion
+
+    AAN       Ambiguous; Ambiguous; This trial type would suggest that the speaker had two
+              No overlap            blind spots, or was under-informative.
+
+   ACSii      Ambiguous; Contrastive;     The Contrast Shape in the Ambiguous display would
+              Contrast Shape overlap      be the blind spot, and therefore, it cannot be the
+                                          Contrast Shape in the Contrastive display.
+
+   ACTii      Ambiguous; Contrastive;     The Contrast Shape in the Ambiguous display would
+              Both shapes overlap         be the blind spot, and therefore, it cannot be the
+                                          Target in the Contrastive display.
+
+Table S4.
+Twenty-eight trial types split into two lists of items in Experiment 1. See Tables S5-S6 for the
+images that participants saw in each list.
+
+ List 1                                           List 2
+
+ CCT                      RRN                     CCS                      DAS
+
+ RAS                      ACS                     DRS                      AAS
+
+ DDS                      CCSii                   RRS                      ARS
+
+ RCN                      CCD                     DCN                      ACD
+
+ DRN                      DCD                     RCD                      DDN
+
+ RCS                      DAN                     CCTii                    DCS
+
+ ACN                      AAT                     RAN                      CRN
+
+Table S5.
+Trial-by-trial results for Experiment 1, List 1 trials (Table S4). Participant judgments appear in
+blue, and model predictions in red.
+
+        LIST 1 - Trials              ToM model predictions                 Deductive model
+                                                                             predictions
+
+
+
+
+
+Table S6.
+Trial-by-trial results for Experiment 1, List 2 trials (Table S4). Participant judgments appear in
+blue, and model predictions in red.
+
+        LIST 2 - Trials              ToM model predictions                 Deductive model
+                                                                             predictions
+
+
+
+
+Table S7.
+Sample size and exclusions in Experiment 2.
+
+                                 Participants included in the   Participants recruited but
+                                 study                          excluded from the study
+
+ Reliable (0/3 redundant uses)   31                             7
+
+ Graded reliable (⅓ redundant    31                             2
+ uses)
+
+ Graded unreliable (⅔            30                             5
+ redundant uses)
+
+ Unreliable (3/3 redundant       30                             9
+ uses)
+
