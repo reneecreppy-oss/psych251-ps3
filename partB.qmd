@@ -1,0 +1,180 @@
+---
+title: "Reproducibility check: Jara-Ettinger & Rubio-Fernandez (2021)"
+author: "Renée Creppy"
+date: today
+format:
+  html:
+    toc: true
+    embed-resources: true
+execute:
+  echo: true
+  warning: false
+  message: false
+---
+
+## Article
+
+- Citation and DOI: Jara-Ettinger, J., & Rubio-Fernandez, P. (2021). Quantitative mental state attributions in language understanding. *Science Advances, 7*(47), eabj0970. <https://doi.org/10.1126/sciadv.abj0970>
+- Data/materials repository URL: <https://osf.io/h8qfy/>
+- Part A (known case) or Part B (a classmate's project paper): **Part B**
+- Part B only: the classmate's project repo, and which target outcome is its key effect: The classmate replicated Experiment 1. The key effect is **target 4**, the subject-level paired t-test comparing individual participants' belief-inference correlations with the theory-of-mind model vs. the deductive model: t(59) = 5.43, p \< .0001, N = 60. The classmate's project also lists d = 0.7, which is not reported in the paper. Classmate's repo: <https://github.com/psych251/jara-ettinger2021>
+
+## Target outcomes
+
+Written **before** opening the data (recorded 13:48, Nov 22). Quoted from the paper's Results.
+
++--------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------+
+| \#                 | Target outcome (quoted)                                                                                                                                                                                                                         | Paper value(s)                                                                                    |
++====================+=================================================================================================================================================================================================================================================+===================================================================================================+
+| 1                  | Exp. 1: "Participant judgments showed a high fit to our quantitative theory of mind model, with a correlation of r = 0.95 for belief inferences \[95% confidence interval (CI95%): 0.92 to 0.98\]"                                              | r = 0.95, CI \[0.92, 0.98\]                                                                       |
++--------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------+
+| 2                  | Exp. 1: "and a correlation of r = 0.99 (CI95%: 0.99 to 1.00; Fig. 3, A and B) for referent inferences"                                                                                                                                          | r = 0.99, CI \[0.99, 1.00\]                                                                       |
++--------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------+
+| 3                  | Exp. 1: "the deductive model's belief inferences were markedly lower (r = 0.56; CI95%: 0.38 to 0.82) and outperformed by our theory of mind model (r = 0.386; CI95%: 0.15 to 0.56)"                                                             | r = 0.56, CI \[0.38, 0.82\]; difference = 0.386, CI \[0.15, 0.56\]                                |
++--------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------+
+| 4 (**key effect**) | Exp. 1: "individual participant belief inferences showed an average r = 0.59 correlation with our theory of mind model, and a significantly lower r = 0.35 correlation with our deductive model \[t(59) = 5.43, P \< 0.0001 by paired t test\]" | mean r = 0.59 vs. 0.35; t(59) = 5.43, p \< .0001; (d = 0.7 per classmate's project, not in paper) |
++--------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------------------------------------------------------------------------------------------------+
+
+Note: my first list also had two targets from Experiments 2 and 3 (Exp. 2 overall model fit, r = 0.96; Exp. 3 belief correlation, r = 0.95, and 40/48 referent matches). I dropped them to focus this check on Experiment 1, the experiment my classmate replicated. They are not part of this report's verdicts.
+
+## Materials inventory
+
++----------------------------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Item                             | Available? | Notes                                                                                                                                                                                                                                                                                  |
++==================================+============+========================================================================================================================================================================================================================================================================================+
+| Raw data                         | Yes        | `RawData/Exp1–3_RawData.csv`: trial-level trackpad positions (Exp. 1–2) and corner choices and 0–10 ratings (Exp. 3). Exp. 1 raw data has 63 participants; the authors' code drops 3 surplus participants to reach the reported 60, which the paper does not mention.                  |
++----------------------------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Processed data                   | Yes        | `ProcessedData/` for Exp. 1–2 (participants and model). My processing from raw data matched these files exactly (max difference \< 1e-15).                                                                                                                                             |
++----------------------------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Codebook / variable descriptions | Partial    | No codebook. Only a short readme about trial-label typos (`TrialKeys_Readme.txt`). Variable meanings (e.g., `cg_x`, `StimRotation`, `LeftCounterbalance`, speaker codes 1–4) had to be worked out from the analysis code.                                                              |
++----------------------------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Analysis code                    | Yes        | R scripts for processing and analysis of every experiment (`AnalysisFiles/`), with the expected outputs written as comments. The scripts don't run as-is: each hard-codes `setwd()` to the author's computer. The Python model code and precomputed model predictions are also posted. |
++----------------------------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Preregistration                  | No         | None mentioned in the paper or supplement.                                                                                                                                                                                                                                             |
++----------------------------------+------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+## Reproduction
+
+The agent's work, under my direction. The agent adapted the authors' OSF scripts so they run from the raw data in this repo. The changes: no `setwd()`, plotting code removed, and results stored as named objects. The statistical steps and the authors' bootstrap seeds are unchanged. The full script is below.
+
+```{r}
+#| label: setup
+#| file: partB_reproduce.R
+#| results: hide
+```
+
+### Processing checks
+
+```{r}
+#| label: checks
+tibble(
+  check = c("Exp. 1 participants in raw data", "Exp. 1 participants analyzed",
+            "Exp. 1 values matching authors' processed file (max abs. difference)"),
+  value = c(n_raw1, n_analyzed1, signif(exp1_processing_max_diff, 2))
+) %>% knitr::kable()
+```
+
+### Results with the current R version (`r R.version.string`)
+
+```{r}
+#| label: analysis
+# Targets 1-3: Exp. 1 trial-level correlations and bootstrapped 95% CIs
+exp1_corrs %>% mutate(across(where(is.numeric), ~ round(.x, 3))) %>% knitr::kable()
+
+# Target 3b: ToM minus deductive correlation for belief inferences
+exp1_delta
+round(exp1_delta_ci, 4)
+
+# Target 4 (KEY EFFECT): subject-level paired t-test
+exp1_subject_means
+exp1_key_t
+round(exp1_key_dz, 2)   # Cohen's d_z (mean difference / SD of differences)
+```
+
+### Why some bootstrap CI bounds differ slightly, and an exact match
+
+R 3.6.0 (2019) changed how R draws random samples. The authors' expected outputs (comments in their scripts) match the old sampler. Rerunning the bootstrap with `RNGversion("3.5.0")` and the authors' seeds gives their numbers exactly:
+
+```{r}
+#| label: old-rng
+suppressWarnings(RNGversion("3.5.0"))
+set.seed(23754)
+exp1_corrs_old <- Melted1 %>% group_by(Type, Model) %>%
+  do(data.frame(r = cor(.$Prediction, .$human), Lower = .GetLower_CI(.), Top = .GetTop_CI(.))) %>%
+  ungroup() %>% arrange(Model)
+exp1_corrs_old %>% mutate(across(where(is.numeric), ~ round(.x, 3))) %>% knitr::kable()
+
+set.seed(7582)
+bs_old <- boot::boot(filter(AllData1, Type == "belief"), .GetRDiff, R = 10000)
+round(boot::boot.ci(bs_old, type = "basic")$basic[4:5], 4)   # authors' comment: 0.1529, 0.5583
+RNGversion(as.character(getRversion()))
+```
+
+How much the CI bounds move with the seed alone (deductive-model belief upper bound, 20 seeds):
+
+```{r}
+#| label: seed-spread
+dd <- filter(Melted1, Type == "belief", Model == "Deductive")
+ups <- sapply(1:20, function(s) { set.seed(s); .GetTop_CI(dd) })
+round(range(ups), 3)
+```
+
+## Checker's verdict
+
+Filled in by you, not the agent.
+
++----------------------------------------------------------+--------------------------------------------+--------------------------------+----------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| \#                                                       | Paper value                                | Reproduced value               | Verdict (exact / minor / major / not reproducible)             | Reason for discrepancy                                                                                                                                                                                   |
++==========================================================+============================================+================================+================================================================+==========================================================================================================================================================================================================+
+| 1.  Belief judgments vs ToM model                        | r = 0.95, CI \[0.92, 0.98\]                | r = 0.947, CI \[0.924, 0.979\] | exact                                                          |                                                                                                                                                                                                          |
++----------------------------------------------------------+--------------------------------------------+--------------------------------+----------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 2.  Referent judgments vs ToM model                      | r= 0.99, CI \[ 0.99 to 1.00\]              | r = 0.994, CI \[0.990, 0.998\] | exact                                                          |                                                                                                                                                                                                          |
++----------------------------------------------------------+--------------------------------------------+--------------------------------+----------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 3a. Belief judgments vs deductive model                  | r = 0.56, CI \[0.38, 0.82\]                | r = 0.561, CI \[0.377, 0.814\] | minor: one CI off by .01                                       | Bootstrap CI depends on R's random-number generator, which changed in R 3.6. Rerunning with the old generator and the author's seed gives 0.817 (author's finding). This was not an error in the paper.  |
++----------------------------------------------------------+--------------------------------------------+--------------------------------+----------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 3b. How much better ToM performed vs deductive (beliefs) | 0.386, CI \[0.15, 0.56\]                   | 0.386, CI \[0.145, 0.562\]     | exact                                                          |                                                                                                                                                                                                          |
++----------------------------------------------------------+--------------------------------------------+--------------------------------+----------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 4a. Average participant-level belief r: ToM vs deductive | 0.59 vs 0.35                               | 0.586 vs 0.350                 | exact                                                          |                                                                                                                                                                                                          |
++----------------------------------------------------------+--------------------------------------------+--------------------------------+----------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 4b. Paired t-test                                        | t(59) = 5.43, p \< .0001                   | t(59) = 5.433, p = 0.0000011   | exact                                                          |                                                                                                                                                                                                          |
++----------------------------------------------------------+--------------------------------------------+--------------------------------+----------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| 4c. Effect size                                          | d = 0.7 (classmate's number, not in paper) | d_z = 0.70                     | exact: paper didn't report but matches classmate's calculation |                                                                                                                                                                                                          |
++----------------------------------------------------------+--------------------------------------------+--------------------------------+----------------------------------------------------------------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+Agent's own claim about success, and whether it was right:
+
+The agent claimed all four of exp.1's targets reproduced: three exactly, and the upper bound of the CI was off by .01. The agent attributed this to R's random-number generator change in R 3.6 and confirmed by rerunning with the old generator. I double checked these claims. and I agree - so the agent's claim's were accurate.
+
+## Time
+
+- Your time (hours): 1.2 hours
+- Agent wall-clock time (hours): \~0.6
+- Stopped at the 4-hour cap? What remained: No, all the targets from exp. 1 were reproduced.
+
+## Assessment
+
+Is the primary result analytically reproducible? What would have made this take 30 minutes?
+
+Yes, the primary result is reproducible. Ideas on what could have made this take 30 mins:
+
+- making the code more open-science friendly: original script hard-coded the author's own folder, could not run as posted
+
+- Including info on the codebook, which version of R was used for analysis, and why 3 dropped participants were not mentioned in the paper
+
+## AI documentation
+
+- Agent and interface: Claude Code, VS Code extension
+
+- Model and version, if the tool reports it: Claude Opus 5.5
+
+- Context you gave it (files, instructions, any context file): I provided the agent with the instructions of part B from PS3 and the paper's DOI link. I downloaded the article PDF, supplementary materials, and OSF files myself (the website blocked the agent). The agent downloaded the full OSF project directly. I told it the key effect my classmate found, and did not provide a claude.md file. This was the same chat session I had used earlier to set up part A, so the agent had that prior context. It had not seen this paper or its data before. .
+
+- Number of times you intervened, and the most important intervention: 3 interventions, after giving the task
+
+  1\) supplied the paper PDF, supplement, OSF files
+
+  2\) told it classmate's key effect, which made it target 4 (prior the agent wanted to reproduce all analyses from all experiments in the paper, wanted to ensure that the agent was doing calculations that matched the key stats my classmate reported)
+
+  3\) told it to drop exp. 2 + 3 targets and focus only on exp. 1
+
+- Transcript: [transcripts/partB_transcript.md](https://github.com/reneecreppy-oss/psych251-ps3/blob/main/transcripts/partB_transcript.md) (committed to this repo under `transcripts/`). This transcript also covers my Part A setup and checking, which happened in the same chat session. I converted the raw Claude Code transcript to Markdown, removed my email, username, and home-folder paths, left out system messages, and shortened long tool outputs. I read it before committing.
